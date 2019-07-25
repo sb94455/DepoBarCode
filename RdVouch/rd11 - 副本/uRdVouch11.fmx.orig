@@ -1,0 +1,407 @@
+﻿inherited frm_RdVouch11: Tfrm_RdVouch11
+  Caption = #37319#36141#20837#24211'-'#26032#24314
+  ClientHeight = 618
+  ClientWidth = 363
+  StyleBook = U8DM.AndroidLight
+  OnShow = FormShow
+  DesignerMasterStyle = 0
+  inherited TitleRet: TRectangle
+    Size.Width = 363.000000000000000000
+    inherited btn_BaseBack: TButton
+      Text = #36820#22238
+    end
+    inherited txt_BaseTitle: TText
+      Size.Width = 163.000000000000000000
+      Text = #37319#36141#20837#24211
+      TextSettings.Font.Size = 16.000000000000000000
+    end
+    object btn_Save: TButton
+      Align = Right
+      Position.X = 223.000000000000000000
+      Size.Width = 70.000000000000000000
+      Size.Height = 35.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = #20445#23384
+      OnClick = btn_SaveClick
+    end
+    object btn_ClearDetail: TButton
+      Align = Right
+      Position.X = 293.000000000000000000
+      Size.Width = 70.000000000000000000
+      Size.Height = 35.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Text = #28165#38500
+      OnClick = btn_ClearDetailClick
+    end
+  end
+  inherited ClientSCB: TVertScrollBox
+    Size.Width = 363.000000000000000000
+    Size.Height = 583.000000000000000000
+    Viewport.Width = 363.000000000000000000
+    Viewport.Height = 583.000000000000000000
+    inherited ClientLyt: TLayout
+      Size.Width = 363.000000000000000000
+      Size.Height = 583.000000000000000000
+      object DetailLay: TLayout
+        Align = Client
+        Size.Width = 363.000000000000000000
+        Size.Height = 399.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        object TabControl1: TTabControl
+          Align = Client
+          Size.Width = 363.000000000000000000
+          Size.Height = 399.000000000000000000
+          Size.PlatformDefault = False
+          TabHeight = 49.000000000000000000
+          TabIndex = 1
+          TabOrder = 1
+          TabPosition = Top
+          Sizes = (
+            363s
+            350s
+            363s
+            350s
+            363s
+            350s)
+          object tbtm_Ref: TTabItem
+            CustomIcon = <
+              item
+              end>
+<<<<<<< HEAD
+            IsSelected = False
+            Size.Width = 137.000000000000000000
+=======
+            IsSelected = True
+            Size.Width = 121.000000000000000000
+>>>>>>> 99732c82297289bc607e132627a6db6fdd34b504
+            Size.Height = 49.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = ''
+            TabOrder = 0
+            Text = #21442#29031#26469#28304
+            ExplicitSize.cx = 44.000000000000000000
+            ExplicitSize.cy = 26.000000000000000000
+            object strngrd_Ref: TStringGrid
+              Align = Top
+              CanFocus = True
+              ClipChildren = True
+              Size.Width = 363.000000000000000000
+              Size.Height = 249.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 1
+              OnCellDblClick = StringGrid_SubCellDblClick
+              Viewport.Width = 358.000000000000000000
+              Viewport.Height = 217.000000000000000000
+            end
+            object StringGrid_SubDetail: TStringGrid
+              Align = Client
+              CanFocus = True
+              ClipChildren = True
+              Size.Width = 363.000000000000000000
+              Size.Height = 101.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 0
+              OnCellDblClick = StringGrid_SubDetailCellDblClick
+              Viewport.Width = 363.000000000000000000
+              Viewport.Height = 69.000000000000000000
+            end
+          end
+          object tbtm_Detail: TTabItem
+            CustomIcon = <
+              item
+              end>
+<<<<<<< HEAD
+            IsSelected = True
+            Size.Width = 137.000000000000000000
+=======
+            IsSelected = False
+            Size.Width = 121.000000000000000000
+>>>>>>> 99732c82297289bc607e132627a6db6fdd34b504
+            Size.Height = 49.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = ''
+            TabOrder = 0
+            Text = #26126#32454
+            ExplicitSize.cx = 44.000000000000000000
+            ExplicitSize.cy = 26.000000000000000000
+            object TabControlDetail: TTabControl
+              Align = Client
+              Size.Width = 363.000000000000000000
+              Size.Height = 350.000000000000000000
+              Size.PlatformDefault = False
+              TabHeight = 49.000000000000000000
+              TabIndex = 1
+              TabOrder = 0
+              TabPosition = PlatformDefault
+              Sizes = (
+                363s
+                301s
+                363s
+                301s)
+              object tbtmDetailList: TTabItem
+                CustomIcon = <
+                  item
+                  end>
+                IsSelected = False
+                Size.Width = 181.000000000000000000
+                Size.Height = 49.000000000000000000
+                Size.PlatformDefault = False
+                StyleLookup = ''
+                TabOrder = 0
+                Text = #21015#34920
+                ExplicitSize.cx = 206.000000000000000000
+                ExplicitSize.cy = 49.000000000000000000
+                object strngrd_Detail: TStringGrid
+                  Align = Client
+                  CanFocus = True
+                  ClipChildren = True
+                  Size.Width = 363.000000000000000000
+                  Size.Height = 301.000000000000000000
+                  Size.PlatformDefault = False
+                  TabOrder = 0
+<<<<<<< HEAD
+                  OnCellDblClick = strngrd_DetailCellDblClick
+                  Viewport.Width = 412.000000000000000000
+=======
+                  OnCellDblClick = StringGrid_DetailCellDblClick
+                  Viewport.Width = 363.000000000000000000
+>>>>>>> 99732c82297289bc607e132627a6db6fdd34b504
+                  Viewport.Height = 269.000000000000000000
+                end
+              end
+              object tbtmDetailCard: TTabItem
+                CustomIcon = <
+                  item
+                  end>
+                IsSelected = True
+                Size.Width = 182.000000000000000000
+                Size.Height = 49.000000000000000000
+                Size.PlatformDefault = False
+                StyleLookup = ''
+                TabOrder = 0
+                Text = #21345#29255
+                ExplicitSize.cx = 206.000000000000000000
+                ExplicitSize.cy = 49.000000000000000000
+                object LayDetailCard: TLayout
+                  Align = Client
+                  Size.Width = 363.000000000000000000
+                  Size.Height = 276.000000000000000000
+                  Size.PlatformDefault = False
+                  TabOrder = 0
+                end
+                object BindNavigator1: TBindNavigator
+                  Align = Top
+                  Size.Width = 363.000000000000000000
+                  Size.Height = 25.000000000000000000
+                  Size.PlatformDefault = False
+                  TabOrder = 1
+                  DataSource = BdSrcDb_Detail
+                  VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
+                  xRadius = 4.000000000000000000
+                  yRadius = 4.000000000000000000
+                end
+              end
+            end
+          end
+          object tbtm_t1: TTabItem
+            CustomIcon = <
+              item
+              end>
+            IsSelected = False
+            Size.Width = 121.000000000000000000
+            Size.Height = 49.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = ''
+            TabOrder = 0
+            Text = 'tbtm_t1'
+            ExplicitSize.cx = 65.000000000000000000
+            ExplicitSize.cy = 21.000000000000000000
+            object Memo1: TMemo
+              Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+              DataDetectorTypes = []
+              Align = Client
+              Size.Width = 363.000000000000000000
+              Size.Height = 350.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 0
+              Viewport.Width = 355.000000000000000000
+              Viewport.Height = 342.000000000000000000
+            end
+          end
+        end
+      end
+      object BillCodeLay: TLayout
+        Align = Top
+        Margins.Top = 4.000000000000000000
+        Margins.Right = 4.000000000000000000
+        Position.Y = 4.000000000000000000
+        Size.Width = 359.000000000000000000
+        Size.Height = 30.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        object edt_QRCode: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          TabOrder = 0
+          TextSettings.FontColor = xFF666666
+          Margins.Right = 5.000000000000000000
+          Size.Width = 297.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          StyledSettings = [Family, Size, Style]
+          OnKeyUp = edt_QRCodeKeyUp
+          object ClearEditButton1: TClearEditButton
+            CanFocus = False
+            Cursor = crArrow
+            Size.Width = 32.000000000000000000
+            Size.Height = 30.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = 'cleareditbutton'
+            TabOrder = 0
+          end
+          object EllipsesEditButton1: TEllipsesEditButton
+            CanFocus = False
+            Cursor = crArrow
+            Position.X = 32.000000000000000000
+            Size.Width = 28.000000000000000000
+            Size.Height = 28.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 1
+          end
+        end
+        object lbl_txt_QRCodeLabe: TLabel
+          Align = Left
+          Size.Width = 57.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          Text = #25195#25551#26465#30721
+          TabOrder = 1
+        end
+      end
+      object lyt_Main: TLayout
+        Align = Top
+        Position.Y = 34.000000000000000000
+        Size.Width = 363.000000000000000000
+        Size.Height = 150.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+      end
+    end
+  end
+  inherited MsgRec: TRectangle
+    Size.Width = 412.000000000000000000
+    inherited txt_BaseMsg: TText
+      Size.Width = 412.000000000000000000
+    end
+  end
+  object fdmtbl_Main: TFDMemTable
+    AfterOpen = fdmtbl_MainAfterOpen
+    AfterInsert = fdmtbl_MainAfterInsert
+    BeforePost = fdmtbl_MainBeforePost
+    FieldDefs = <>
+    IndexDefs = <>
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    StoreDefs = True
+    Left = 104
+    Top = 128
+  end
+  object fdmtbl_Ref: TFDMemTable
+    AfterOpen = fdmtbl_RefAfterOpen
+    AfterScroll = fdmtbl_RefAfterScroll
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 56
+    Top = 328
+  end
+  object fdmtbl_Detail: TFDMemTable
+    AfterOpen = fdmtbl_DetailAfterOpen
+    BeforePost = fdmtbl_DetailBeforePost
+    AfterPost = fdmtbl_DetailAfterPost
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 264
+    Top = 320
+  end
+  object BindSourceDB_Main: TBindSourceDB
+    DataSet = fdmtbl_Main
+    ScopeMappings = <>
+    Left = 296
+    Top = 136
+  end
+  object BindingsList1: TBindingsList
+    Methods = <>
+    OutputConverters = <>
+    Left = 260
+    Top = 413
+    object LinkGridToData_Sub: TLinkGridToDataSource
+      Category = 'Quick Bindings'
+      DataSource = BdSrcDb_Ref
+      GridControl = strngrd_Ref
+      Columns = <
+        item
+          ColumnStyle = 'CheckColumn'
+        end>
+    end
+    object LinkGridToData_Detail: TLinkGridToDataSource
+      Category = 'Quick Bindings'
+      DataSource = BdSrcDb_Detail
+      GridControl = strngrd_Detail
+      Columns = <>
+    end
+    object LinkGridToData_SubDetail: TLinkGridToDataSource
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB_SubDetail
+      GridControl = StringGrid_SubDetail
+      Columns = <>
+    end
+  end
+  object BdSrcDb_Detail: TBindSourceDB
+    DataSet = fdmtbl_Detail
+    ScopeMappings = <>
+    Left = 264
+    Top = 362
+  end
+  object BdSrcDb_Ref: TBindSourceDB
+    DataSet = fdmtbl_Ref
+    ScopeMappings = <>
+    Left = 56
+    Top = 264
+  end
+  object fdmtbl_Detail_sub: TFDMemTable
+    AfterOpen = fdmtbl_Detail_subAfterOpen
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 56
+    Top = 408
+  end
+  object BindSourceDB_SubDetail: TBindSourceDB
+    DataSet = fdmtbl_Detail_sub
+    ScopeMappings = <>
+    Left = 56
+    Top = 480
+  end
+end

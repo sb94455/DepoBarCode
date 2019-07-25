@@ -1,0 +1,15 @@
+﻿[FDM_VouchList]
+Visible=False
+
+[U8DM.FDM_SZHL_ItmDef]
+Visible=False
+
+[frm_RdVouchWW01.fdm_Main]
+Visible=False
+
+[frm_RdVouchWW01.fdm_Detail]
+Visible=False
+
+[frm_RdVouchWW01.fdm_Sub]
+Visible=False
+

@@ -1,0 +1,674 @@
+inherited frm_delivery: Tfrm_delivery
+  Caption = 'BaseFrm1'
+  ClientWidth = 622
+  OnShow = FormShow
+  DesignerMasterStyle = 0
+  inherited TitleRet: TRectangle
+    Size.Width = 622.000000000000000000
+    inherited txt_BaseTitle: TText
+      Size.Width = 558.000000000000000000
+      Text = #29983#20135#39046#26009
+      object btn_Save: TButton
+        Align = Right
+        Enabled = False
+        Position.X = 488.000000000000000000
+        Size.Width = 70.000000000000000000
+        Size.Height = 30.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'listitembutton'
+        TabOrder = 1
+        Text = #25552#20132
+      end
+    end
+  end
+  inherited ClientSCB: TVertScrollBox
+    Size.Width = 622.000000000000000000
+    Viewport.Width = 622.000000000000000000
+    Viewport.Height = 593.000000000000000000
+    inherited ClientLyt: TLayout
+      Size.Width = 622.000000000000000000
+      object VertScrollBox1: TVertScrollBox
+        Align = Client
+        Size.Width = 622.000000000000000000
+        Size.Height = 593.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Viewport.Width = 622.000000000000000000
+        Viewport.Height = 593.000000000000000000
+        object Layout1: TLayout
+          Align = Client
+          Size.Width = 622.000000000000000000
+          Size.Height = 593.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          object DetailLay: TLayout
+            Align = Client
+            Size.Width = 622.000000000000000000
+            Size.Height = 515.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            object StringGrid_OrderDetail: TStringGrid
+              Align = Client
+              CanFocus = True
+              ClipChildren = True
+              Size.Width = 622.000000000000000000
+              Size.Height = 189.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 1
+              Viewport.Width = 602.000000000000000000
+              Viewport.Height = 148.000000000000000000
+            end
+            object StringGrid_StockDetail: TStringGrid
+              Align = Bottom
+              CanFocus = True
+              ClipChildren = True
+              Position.Y = 241.000000000000000000
+              Size.Width = 622.000000000000000000
+              Size.Height = 274.000000000000000000
+              Size.PlatformDefault = False
+              TabOrder = 2
+              Viewport.Width = 602.000000000000000000
+              Viewport.Height = 249.000000000000000000
+            end
+            object Text2: TText
+              Align = Bottom
+              Position.Y = 214.000000000000000000
+              Size.Width = 622.000000000000000000
+              Size.Height = 27.000000000000000000
+              Size.PlatformDefault = False
+              Text = #24211#23384#20449#24687
+            end
+            object Text1: TText
+              Align = Top
+              Size.Width = 622.000000000000000000
+              Size.Height = 25.000000000000000000
+              Size.PlatformDefault = False
+              Text = #23376#20214#20449#24687
+            end
+            object TMSFMXLiveGrid1: TTMSFMXLiveGrid
+              DisableFocusEffect = False
+              Position.X = 8.000000000000000000
+              Position.Y = 32.000000000000000000
+              TabOrder = 3
+              Size.Width = 561.000000000000000000
+              Size.Height = 217.000000000000000000
+              Size.PlatformDefault = False
+              ColumnCount = 7
+              Options.Editing.CalcFormat = '%g'
+              Options.Grouping.CalcFormat = '%g'
+              Options.Grouping.GroupCountFormat = '(%d)'
+              Options.IO.XMLEncoding = 'ISO-8859-1'
+              Options.Mouse.TouchScrollingSensitivity = 0.100000001490116100
+              Options.Printing.PageNumberFormat = '%g'
+              Version = '2.3.1.6'
+              Fill.Kind = Solid
+              Stroke.Kind = Solid
+              TopRow = 1
+              LeftCol = 1
+              OnCellClick = TMSFMXLiveGrid1CellClick
+              Columns = <
+                item
+                  Color = claNull
+                  Editor = etEdit
+                  Fixed = False
+                  FixedFont.StyleExt = {00070000000000000004000000}
+                  FixedFontColor = claBlack
+                  FontColor = claBlack
+                  ID = ''
+                  Width = 68.000000000000000000
+                end
+                item
+                  Color = claNull
+                  Editor = etEdit
+                  Fixed = False
+                  FixedFont.StyleExt = {00070000000000000004000000}
+                  FixedFontColor = claBlack
+                  FontColor = claBlack
+                  ID = ''
+                  Width = 68.000000000000000000
+                end
+                item
+                  Color = claNull
+                  Editor = etEdit
+                  Fixed = False
+                  FixedFont.StyleExt = {00070000000000000004000000}
+                  FixedFontColor = claBlack
+                  FontColor = claBlack
+                  ID = ''
+                  Width = 68.000000000000000000
+                end
+                item
+                  Color = claNull
+                  Editor = etEdit
+                  Fixed = False
+                  FixedFont.StyleExt = {00070000000000000004000000}
+                  FixedFontColor = claBlack
+                  FontColor = claBlack
+                  ID = ''
+                  Width = 68.000000000000000000
+                end
+                item
+                  Color = claNull
+                  Editor = etEdit
+                  Fixed = False
+                  FixedFont.StyleExt = {00070000000000000004000000}
+                  FixedFontColor = claBlack
+                  FontColor = claBlack
+                  ID = ''
+                  Width = 68.000000000000000000
+                end
+                item
+                  Color = claNull
+                  Editor = etEdit
+                  Fixed = False
+                  FixedFont.StyleExt = {00070000000000000004000000}
+                  FixedFontColor = claBlack
+                  FontColor = claBlack
+                  ID = ''
+                  Width = 68.000000000000000000
+                end
+                item
+                  Color = claNull
+                  Editor = etEdit
+                  Fixed = False
+                  FixedFont.StyleExt = {00070000000000000004000000}
+                  FixedFontColor = claBlack
+                  FontColor = claBlack
+                  ID = ''
+                  Width = 68.000000000000000000
+                end>
+            end
+            object TMSFMXLiveGrid2: TTMSFMXLiveGrid
+              DisableFocusEffect = False
+              Position.Y = 248.000000000000000000
+              TabOrder = 4
+              Size.Width = 481.000000000000000000
+              Size.Height = 270.000000000000000000
+              Size.PlatformDefault = False
+              ColumnCount = 8
+              Options.Editing.CalcFormat = '%g'
+              Options.Grouping.CalcFormat = '%g'
+              Options.Grouping.GroupCountFormat = '(%d)'
+              Options.IO.XMLEncoding = 'ISO-8859-1'
+              Options.Mouse.TouchScrollingSensitivity = 0.100000001490116100
+              Options.Printing.PageNumberFormat = '%g'
+              Version = '2.3.1.6'
+              Fill.Kind = Solid
+              Stroke.Kind = Solid
+              TopRow = 1
+              LeftCol = 1
+              Columns = <
+                item
+                  Color = claNull
+                  Editor = etEdit
+                  Fixed = False
+                  FixedFont.StyleExt = {00070000000000000004000000}
+                  FixedFontColor = claBlack
+                  FontColor = claBlack
+                  ID = ''
+                  Width = 68.000000000000000000
+                end
+                item
+                  Color = claNull
+                  Editor = etEdit
+                  Fixed = False
+                  FixedFont.StyleExt = {00070000000000000004000000}
+                  FixedFontColor = claBlack
+                  FontColor = claBlack
+                  ID = ''
+                  Width = 68.000000000000000000
+                end
+                item
+                  Color = claNull
+                  Editor = etEdit
+                  Fixed = False
+                  FixedFont.StyleExt = {00070000000000000004000000}
+                  FixedFontColor = claBlack
+                  FontColor = claBlack
+                  ID = ''
+                  Width = 68.000000000000000000
+                end
+                item
+                  Color = claNull
+                  Editor = etEdit
+                  Fixed = False
+                  FixedFont.StyleExt = {00070000000000000004000000}
+                  FixedFontColor = claBlack
+                  FontColor = claBlack
+                  ID = ''
+                  Width = 68.000000000000000000
+                end
+                item
+                  Color = claNull
+                  Editor = etEdit
+                  Fixed = False
+                  FixedFont.StyleExt = {00070000000000000004000000}
+                  FixedFontColor = claBlack
+                  FontColor = claBlack
+                  ID = ''
+                  Width = 68.000000000000000000
+                end
+                item
+                  Color = claNull
+                  Editor = etEdit
+                  Fixed = False
+                  FixedFont.StyleExt = {00070000000000000004000000}
+                  FixedFontColor = claBlack
+                  FontColor = claBlack
+                  ID = ''
+                  Width = 68.000000000000000000
+                end
+                item
+                  Color = claNull
+                  Editor = etEdit
+                  Fixed = False
+                  FixedFont.StyleExt = {00070000000000000004000000}
+                  FixedFontColor = claBlack
+                  FontColor = claBlack
+                  ID = ''
+                  Width = 68.000000000000000000
+                end
+                item
+                  Color = claNull
+                  Editor = etEdit
+                  Fixed = False
+                  FixedFont.StyleExt = {00070000000000000004000000}
+                  FixedFontColor = claBlack
+                  FontColor = claBlack
+                  ID = ''
+                  Width = 68.000000000000000000
+                end>
+            end
+          end
+          object BillCodeLay: TLayout
+            Align = Top
+            Margins.Top = 4.000000000000000000
+            Margins.Right = 4.000000000000000000
+            Position.Y = 4.000000000000000000
+            Size.Width = 618.000000000000000000
+            Size.Height = 35.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 1
+            object edt_QRCode: TEdit
+              Touch.InteractiveGestures = [LongTap, DoubleTap]
+              Align = Client
+              TabOrder = 0
+              Text = 
+                'MoCode=MO2017120001;MoDId=1000158158;cInvCode=1SG-20012;cBatch=M' +
+                'O2017120001-1;iQty=300'
+              TextSettings.FontColor = xFF666666
+              Margins.Right = 5.000000000000000000
+              Size.Width = 540.000000000000000000
+              Size.Height = 35.000000000000000000
+              Size.PlatformDefault = False
+              StyledSettings = [Family, Size, Style]
+              object ClearEditButton1: TClearEditButton
+                CanFocus = False
+                Cursor = crArrow
+                Size.Width = 28.000000000000000000
+                Size.Height = 31.000000000000000000
+                Size.PlatformDefault = False
+                StyleLookup = 'cleareditbutton'
+                TabOrder = 0
+              end
+              object SearchEditButton1: TSearchEditButton
+                CanFocus = False
+                Cursor = crArrow
+                Position.X = 28.000000000000000000
+                Size.Width = 28.000000000000000000
+                Size.Height = 31.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 1
+                OnClick = SearchEditButton1Click
+              end
+            end
+            object txt_QRCodeLabe: TText
+              Align = Left
+              Size.Width = 73.000000000000000000
+              Size.Height = 35.000000000000000000
+              Size.PlatformDefault = False
+              Text = #25195#20108#32500#30721#65306
+              TextSettings.Font.Family = #24494#36719#38597#40657
+              TextSettings.Font.StyleExt = {00070000000000000004000000}
+            end
+          end
+          object Layout2: TLayout
+            Align = Top
+            Margins.Top = 4.000000000000000000
+            Margins.Right = 4.000000000000000000
+            Position.Y = 43.000000000000000000
+            Size.Width = 618.000000000000000000
+            Size.Height = 35.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 2
+            object Edit1: TEdit
+              Touch.InteractiveGestures = [LongTap, DoubleTap]
+              Align = Client
+              TabOrder = 0
+              Text = 
+                'MoCode=MO2017120001;MoDId=1000158158;cInvCode=1SG-20012;cBatch=M' +
+                'O2017120001-1;iQty=300'
+              TextSettings.FontColor = xFF666666
+              Margins.Right = 5.000000000000000000
+              Size.Width = 540.000000000000000000
+              Size.Height = 35.000000000000000000
+              Size.PlatformDefault = False
+              StyledSettings = [Family, Size, Style]
+              object ClearEditButton2: TClearEditButton
+                CanFocus = False
+                Cursor = crArrow
+                Size.Width = 28.000000000000000000
+                Size.Height = 31.000000000000000000
+                Size.PlatformDefault = False
+                StyleLookup = 'cleareditbutton'
+                TabOrder = 0
+              end
+              object SearchEditButton2: TSearchEditButton
+                CanFocus = False
+                Cursor = crArrow
+                Position.X = 28.000000000000000000
+                Size.Width = 28.000000000000000000
+                Size.Height = 31.000000000000000000
+                Size.PlatformDefault = False
+                TabOrder = 1
+                OnClick = SearchEditButton1Click
+              end
+            end
+            object Text3: TText
+              Align = Left
+              Size.Width = 73.000000000000000000
+              Size.Height = 35.000000000000000000
+              Size.PlatformDefault = False
+              Text = #25195#20108#32500#30721#65306
+              TextSettings.Font.Family = #24494#36719#38597#40657
+              TextSettings.Font.StyleExt = {00070000000000000004000000}
+            end
+          end
+        end
+      end
+    end
+  end
+  inherited MsgRec: TRectangle
+    Size.Width = 622.000000000000000000
+    inherited txt_BaseMsg: TText
+      Size.Width = 622.000000000000000000
+    end
+  end
+  object BindingsList1: TBindingsList
+    Methods = <>
+    OutputConverters = <>
+    Left = 84
+    Top = 501
+    object LinkGridToDataSourceBSD_OrderDetail: TLinkGridToDataSource
+      Category = 'Quick Bindings'
+      DataSource = BSD_OrderDetailDelivery
+      GridControl = StringGrid_OrderDetail
+      Columns = <
+        item
+          MemberName = 'cInvCode'
+          ReadOnly = True
+        end
+        item
+          MemberName = 'cInvName'
+          ReadOnly = True
+        end
+        item
+          MemberName = 'Qty'
+          ReadOnly = True
+          CustomParse = '0.00'
+          ColumnStyle = 'Column'
+        end
+        item
+          MemberName = 'IssQty'
+          ReadOnly = True
+          CustomParse = '0.00'
+          ColumnStyle = 'Column'
+        end
+        item
+          MemberName = 'LeftQty'
+          ReadOnly = True
+          CustomParse = '0.00'
+          ColumnStyle = 'Column'
+        end
+        item
+          MemberName = 'currentQty'
+          CustomParse = '0.00'
+          ColumnStyle = 'Column'
+        end>
+      DefaultColumnWidth = 100
+    end
+    object LinkGridToDataSourceBSD_StockDetail: TLinkGridToDataSource
+      Category = 'Quick Bindings'
+      DataSource = BSD_StockDetail
+      GridControl = StringGrid_StockDetail
+      Columns = <
+        item
+          MemberName = 'cInvCode'
+          ReadOnly = True
+        end
+        item
+          MemberName = 'cInvName'
+          ReadOnly = True
+        end
+        item
+          MemberName = 'cBatch'
+          ReadOnly = True
+        end
+        item
+          MemberName = 'cWhName'
+          ReadOnly = True
+        end
+        item
+          MemberName = 'iQuantity'
+          ReadOnly = True
+        end
+        item
+          MemberName = 'dDate'
+          ReadOnly = True
+          ColumnStyle = 'DateColumn'
+        end>
+    end
+    object LinkGridToDataSourceBSD_OrderDetailDelivery: TLinkGridToDataSource
+      Category = 'Quick Bindings'
+      DataSource = BSD_OrderDetailDelivery
+      GridControl = TMSFMXLiveGrid1
+      Columns = <>
+    end
+    object LinkGridToDataSourceBSD_StockDetail2: TLinkGridToDataSource
+      Category = 'Quick Bindings'
+      DataSource = BSD_StockDetail
+      GridControl = TMSFMXLiveGrid2
+      Columns = <>
+    end
+  end
+  object FD_StockDetail: TFDMemTable
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 328
+    Top = 432
+    object FD_StockDetailcInvCode: TWideStringField
+      DisplayLabel = #23384#36135#32534#30721
+      FieldName = 'cInvCode'
+    end
+    object FD_StockDetailcInvName: TWideStringField
+      DisplayLabel = #23384#36135#21517#31216
+      FieldName = 'cInvName'
+      Size = 100
+    end
+    object FD_StockDetailcBatch: TWideStringField
+      DisplayLabel = #25209#27425
+      FieldName = 'cBatch'
+      Size = 100
+    end
+    object FD_StockDetailcWhName: TWideStringField
+      DisplayLabel = #20179#24211#21517#31216
+      FieldName = 'cWhName'
+      Size = 100
+    end
+    object FD_StockDetailiQuantity: TFMTBCDField
+      DisplayLabel = #24211#23384#25968#37327
+      FieldName = 'iQuantity'
+      Size = 20
+    end
+    object FD_StockDetaildDate: TSQLTimeStampField
+      DisplayLabel = #25209#27425#20837#24211#26085#26399
+      FieldName = 'dDate'
+    end
+    object FD_StockDetailcWhCode: TWideStringField
+      FieldName = 'cWhCode'
+      Size = 50
+    end
+  end
+  object BSD_StockDetail: TBindSourceDB
+    DataSet = FD_StockDetail
+    ScopeMappings = <>
+    Left = 328
+    Top = 504
+  end
+  object FD_MaterialDetailOutBill: TFDMemTable
+    AfterInsert = FD_MaterialDetailOutBillAfterInsert
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 136
+    Top = 568
+    object FD_MaterialDetailOutBillcInvCode: TWideStringField
+      FieldName = 'cInvCode'
+      Size = 50
+    end
+    object FD_MaterialDetailOutBillcInvName: TWideStringField
+      FieldName = 'cInvName'
+      Size = 100
+    end
+    object FD_MaterialDetailOutBillcBatch: TWideStringField
+      FieldName = 'cBatch'
+      Size = 100
+    end
+    object FD_MaterialDetailOutBilliMPoIds: TIntegerField
+      FieldName = 'iMPoIds'
+    end
+    object FD_MaterialDetailOutBillcmocode: TWideStringField
+      FieldName = 'cmocode'
+      Size = 100
+    end
+    object FD_MaterialDetailOutBillimoseq: TWideStringField
+      FieldName = 'imoseq'
+      Size = 50
+    end
+    object FD_MaterialDetailOutBilliQuantity: TFMTBCDField
+      FieldName = 'iQuantity'
+      Size = 10
+    end
+    object FD_MaterialDetailOutBilliUnitCost: TFMTBCDField
+      FieldName = 'iUnitCost'
+      Size = 10
+    end
+    object FD_MaterialDetailOutBilliPrice: TFMTBCDField
+      FieldName = 'iPrice'
+      Size = 10
+    end
+  end
+  object FD_MaterialSubOutBill: TFDMemTable
+    AfterInsert = FD_MaterialSubOutBillAfterInsert
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 280
+    Top = 568
+    object FD_MaterialSubOutBillcCode: TWideStringField
+      FieldName = 'cCode'
+      Size = 50
+    end
+    object FD_MaterialSubOutBilldDate: TSQLTimeStampField
+      FieldName = 'dDate'
+    end
+    object FD_MaterialSubOutBillcWhCode: TWideStringField
+      FieldName = 'cWhCode'
+      Size = 50
+    end
+    object FD_MaterialSubOutBillcWhName: TWideStringField
+      FieldName = 'cWhName'
+      Size = 100
+    end
+    object FD_MaterialSubOutBillcMemo: TWideStringField
+      FieldName = 'cMemo'
+      Size = 200
+    end
+    object FD_MaterialSubOutBillcDepCode: TWideStringField
+      FieldName = 'cDepCode'
+      Size = 50
+    end
+    object FD_MaterialSubOutBillcMaker: TWideStringField
+      FieldName = 'cMaker'
+      Size = 50
+    end
+    object FD_MaterialSubOutBillcrdcode: TWideStringField
+      FieldName = 'crdcode'
+      Size = 50
+    end
+    object FD_MaterialSubOutBillcMPoCode: TWideStringField
+      FieldName = 'cMPoCode'
+      Size = 50
+    end
+  end
+  object FD_OrderDetailDelivery: TFDMemTable
+    AfterPost = FD_OrderDetailDeliveryAfterPost
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 80
+    Top = 432
+    object WideStringField1: TWideStringField
+      DisplayLabel = #23384#36135#32534#30721
+      FieldName = 'cInvCode'
+    end
+    object WideStringField2: TWideStringField
+      DisplayLabel = #23384#36135#21517#31216
+      FieldName = 'cInvName'
+      Size = 100
+    end
+    object FMTBCDField1: TFMTBCDField
+      DisplayLabel = #24050#39046
+      FieldName = 'IssQty'
+      Size = 10
+    end
+    object FMTBCDField2: TFMTBCDField
+      DisplayLabel = #24212#39046
+      FieldName = 'Qty'
+      Size = 10
+    end
+    object FMTBCDField3: TFMTBCDField
+      DisplayLabel = #26410#39046
+      FieldName = 'LeftQty'
+      Size = 10
+    end
+    object FMTBCDField4: TFMTBCDField
+      DisplayLabel = #26412#27425#39046#26009#25968#37327
+      FieldName = 'currentQty'
+      Size = 20
+    end
+  end
+  object BSD_OrderDetailDelivery: TBindSourceDB
+    DataSet = FD_OrderDetailDelivery
+    ScopeMappings = <>
+    Left = 152
+    Top = 392
+  end
+end

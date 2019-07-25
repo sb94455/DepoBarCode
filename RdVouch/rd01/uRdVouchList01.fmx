@@ -1,0 +1,158 @@
+inherited frm_RdVouchList01: Tfrm_RdVouchList01
+  Caption = #21333#25454#21015#34920
+  ClientHeight = 670
+  ClientWidth = 450
+  StyleBook = U8DM.AndroidLight
+  StyleLookup = 'pushpanel'
+  DesignerMasterStyle = 0
+  inherited TitleRet: TRectangle
+    Size.Width = 450.000000000000000000
+    inherited btn_BaseBack: TButton
+      Text = #36820#22238
+    end
+    inherited txt_BaseTitle: TText
+      Size.Width = 240.000000000000000000
+      Text = #21333#25454#21015#34920
+      TextSettings.Font.Size = 16.000000000000000000
+    end
+    object btn_ViewVouch: TButton
+      Align = Right
+      Position.X = 400.000000000000000000
+      Size.Width = 50.000000000000000000
+      Size.Height = 35.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = #26597#30475
+      OnClick = btn_ViewVouchClick
+    end
+    object btn_NewVouch: TButton
+      Align = Right
+      Position.X = 300.000000000000000000
+      Size.Width = 50.000000000000000000
+      Size.Height = 35.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Text = #26032#24314
+      OnClick = btn_NewVouchClick
+    end
+    object DeleteBtn: TButton
+      Align = Right
+      Position.X = 350.000000000000000000
+      Size.Width = 50.000000000000000000
+      Size.Height = 35.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 3
+      Text = #21024#38500
+      OnClick = DeleteBtnClick
+    end
+  end
+  inherited ClientSCB: TVertScrollBox
+    Size.Width = 450.000000000000000000
+    Size.Height = 635.000000000000000000
+    Viewport.Width = 450.000000000000000000
+    Viewport.Height = 635.000000000000000000
+    inherited ClientLyt: TLayout
+      Size.Width = 450.000000000000000000
+      Size.Height = 635.000000000000000000
+      object stringGrid_VouchList: TStringGrid
+        Align = Client
+        CanFocus = True
+        ClipChildren = True
+        Margins.Top = 2.000000000000000000
+        Size.Width = 450.000000000000000000
+        Size.Height = 452.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'DataGridStyle1'
+        TextSettings.Font.Size = 10.000000000000000000
+        StyledSettings = [Family, Style, FontColor]
+        TabOrder = 0
+        RowCount = 0
+        Options = [ColumnResize, ColumnMove, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
+        Viewport.Width = 450.000000000000000000
+        Viewport.Height = 420.000000000000000000
+      end
+      object lyt_Main: TLayout
+        Align = Top
+        Size.Width = 450.000000000000000000
+        Size.Height = 145.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+      end
+      object DetailText: TText
+        Align = Top
+        Margins.Top = 3.000000000000000000
+        Position.Y = 148.000000000000000000
+        Size.Width = 450.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Family = #24494#36719#38597#40657
+        object QueryBtn: TButton
+          Align = Right
+          Position.X = 380.000000000000000000
+          Size.Width = 70.000000000000000000
+          Size.Height = 33.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          Text = #26597#35810
+          OnClick = QueryBtnClick
+        end
+        object ClearBtn: TButton
+          Align = FitLeft
+          Size.Width = 69.666656494140620000
+          Size.Height = 33.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Text = #28165#31354
+          OnClick = ClearBtnClick
+        end
+      end
+    end
+  end
+  inherited MsgRec: TRectangle
+    Size.Width = 450.000000000000000000
+    Size.Height = 36.000000000000000000
+    inherited txt_BaseMsg: TText
+      Size.Width = 450.000000000000000000
+      Size.Height = 36.000000000000000000
+    end
+  end
+  object BindingsList1: TBindingsList
+    Methods = <>
+    OutputConverters = <>
+    Left = 148
+    Top = 365
+    object LinkGridToData_VouchList: TLinkGridToDataSource
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB_VouchList
+      GridControl = stringGrid_VouchList
+      Columns = <>
+    end
+  end
+  object BindSourceDB_VouchList: TBindSourceDB
+    DataSet = FDM_VouchList
+    ScopeMappings = <>
+    Left = 144
+    Top = 287
+  end
+  object FDM_VouchList: TFDMemTable
+    AfterOpen = FDM_VouchListAfterOpen
+    FieldDefs = <>
+    IndexDefs = <>
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    StoreDefs = True
+    Left = 256
+    Top = 287
+  end
+  object BindSourceDB_Dict: TBindSourceDB
+    DataSet = U8DM.FDM_SZHL_ItmDef
+    ScopeMappings = <>
+    Left = 256
+    Top = 360
+  end
+end

@@ -1,0 +1,149 @@
+inherited WareHouseFrm: TWareHouseFrm
+  Caption = #26597#35810#20179#24211
+  ClientHeight = 567
+  ClientWidth = 358
+  OnShow = FormShow
+  DesignerMasterStyle = 0
+  inherited TitleRet: TRectangle
+    Size.Width = 358.000000000000000000
+    inherited txt_BaseTitle: TText
+      Size.Width = 228.000000000000000000
+      Text = #20179#24211#26597#35810
+      TextSettings.Font.Family = 'Agency FB'
+      TextSettings.Font.StyleExt = {00040000000000000002000000}
+    end
+    object Confirm: TButton
+      Align = Right
+      Position.X = 288.000000000000000000
+      Size.Width = 70.000000000000000000
+      Size.Height = 35.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'listitembutton'
+      TabOrder = 3
+      Text = #30830#23450
+      OnClick = ConfirmClick
+    end
+  end
+  inherited ClientSCB: TVertScrollBox
+    Size.Width = 358.000000000000000000
+    Size.Height = 532.000000000000000000
+    Viewport.Width = 358.000000000000000000
+    Viewport.Height = 532.000000000000000000
+    inherited ClientLyt: TLayout
+      Size.Width = 358.000000000000000000
+      Size.Height = 532.000000000000000000
+      object cWhCodeLay: TLayout
+        Align = Top
+        Margins.Top = 4.000000000000000000
+        Margins.Right = 4.000000000000000000
+        Position.Y = 4.000000000000000000
+        Size.Width = 354.000000000000000000
+        Size.Height = 30.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 10
+        object txt_Search: TText
+          Align = Left
+          Size.Width = 60.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          Text = #26597#35810#20869#23481
+          TextSettings.Font.Family = #24494#36719#38597#40657
+        end
+        object edt_Search: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          TabOrder = 1
+          TextSettings.FontColor = xFF666666
+          Margins.Right = 10.000000000000000000
+          Size.Width = 284.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          StyledSettings = [Family, Size, Style]
+          OnKeyUp = edt_SearchKeyUp
+          object clsBtn_1: TClearEditButton
+            CanFocus = False
+            Cursor = crArrow
+            Size.Width = 28.000000000000000000
+            Size.Height = 26.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+          end
+          object srhBtn_1: TSearchEditButton
+            CanFocus = False
+            Cursor = crArrow
+            Position.X = 28.000000000000000000
+            Size.Width = 28.000000000000000000
+            Size.Height = 26.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 1
+            OnClick = srhBtn_1Click
+          end
+        end
+      end
+      object DetailLay: TLayout
+        Align = Client
+        Size.Width = 358.000000000000000000
+        Size.Height = 498.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        object DetailText: TText
+          Align = Top
+          Size.Width = 358.000000000000000000
+          Size.Height = 33.000000000000000000
+          Size.PlatformDefault = False
+          Text = #26597#35810#32467#26524
+          TextSettings.Font.Family = #24494#36719#38597#40657
+        end
+        object strngrdWareHouse: TStringGrid
+          Align = Client
+          CanFocus = True
+          ClipChildren = True
+          Size.Width = 358.000000000000000000
+          Size.Height = 465.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          RowCount = 0
+          Options = [Editing, ColumnResize, ColumnMove, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
+          OnCellDblClick = strngrdWareHouseCellDblClick
+          Viewport.Width = 354.000000000000000000
+          Viewport.Height = 440.000000000000000000
+        end
+      end
+    end
+  end
+  inherited MsgRec: TRectangle
+    Size.Width = 358.000000000000000000
+    inherited txt_BaseMsg: TText
+      Size.Width = 358.000000000000000000
+    end
+  end
+  object FDM_WareHouse: TFDMemTable
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 208
+    Top = 392
+  end
+  object BindSourceDB_WareHouse: TBindSourceDB
+    DataSet = FDM_WareHouse
+    ScopeMappings = <>
+    Left = 168
+    Top = 272
+  end
+  object BindingsList_WareHouse: TBindingsList
+    Methods = <>
+    OutputConverters = <>
+    Left = 44
+    Top = 381
+    object LinkGridToData_WareHouse: TLinkGridToDataSource
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB_WareHouse
+      GridControl = strngrdWareHouse
+      Columns = <>
+    end
+  end
+end

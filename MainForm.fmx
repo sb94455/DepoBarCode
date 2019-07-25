@@ -1,0 +1,929 @@
+object MainFrm: TMainFrm
+  Left = 0
+  Top = 0
+  Caption = #20179#20648#26657#39564#31227#21160#31471
+  ClientHeight = 643
+  ClientWidth = 395
+  Position = DesktopCenter
+  StyleBook = U8DM.AndroidLight
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  OnClose = FormClose
+  OnCloseQuery = FormCloseQuery
+  OnKeyUp = FormKeyUp
+  OnShow = FormShow
+  DesignerMasterStyle = 0
+  object Master: TPanel
+    Align = Client
+    Size.Width = 395.000000000000000000
+    Size.Height = 643.000000000000000000
+    Size.PlatformDefault = False
+    StyleLookup = 'pushpanel'
+    TabOrder = 1
+    object ImageTool: TImage
+      MultiResBitmap = <
+        item
+          Width = 129
+          Height = 36
+          PNG = {
+            89504E470D0A1A0A0000000D4948445200000081000000240806000000AE7159
+            0D000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+            006949444154785EEDD08100000000C3A0F9531FE102855061C0800103060C18
+            3060C0800103060C183060C0800103060C183060C0800103060C183060C08001
+            03060C183060C0800103060C183060C0800103060C183060C0800103060C1830
+            60C0800103060C18F8030348B40001E2E1F8D30000000049454E44AE426082}
+        end>
+      Align = Top
+      HitTest = False
+      Size.Width = 395.000000000000000000
+      Size.Height = 36.000000000000000000
+      Size.PlatformDefault = False
+      WrapMode = Stretch
+      object TextTitle: TText
+        Align = Client
+        Locked = True
+        HitTest = False
+        Margins.Right = 42.000000000000000000
+        Size.Width = 273.000000000000000000
+        Size.Height = 36.000000000000000000
+        Size.PlatformDefault = False
+        Text = #26465#30721#24212#29992#31227#21160#31471
+        TextSettings.Font.Family = #24494#36719#38597#40657
+        TextSettings.Font.Size = 20.000000000000000000
+      end
+      object Btn_Exit: TButton
+        Align = Left
+        Size.Width = 80.000000000000000000
+        Size.Height = 36.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = #36864#20986
+        OnClick = Btn_ExitClick
+      end
+    end
+    object ExeBtnGPL: TGridPanelLayout
+      Align = Client
+      Size.Width = 395.000000000000000000
+      Size.Height = 530.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      ColumnCollection = <
+        item
+          Value = 50.000000000000000000
+        end
+        item
+          Value = 50.000000000000000000
+        end>
+      ControlCollection = <
+        item
+          Column = 0
+          Control = ProductInRec
+          Row = 1
+        end
+        item
+          Column = 1
+          Control = PickingRec
+          Row = 0
+        end
+        item
+          Column = 1
+          Control = Rectangle2
+          Row = 2
+        end
+        item
+          Column = 1
+          Control = rctnglSaleOut
+          Row = 1
+        end
+        item
+          Column = 0
+          Control = PurInRec
+          Row = 0
+        end
+        item
+          Column = 0
+          Control = OutPichingRec
+          Row = 2
+        end
+        item
+          Column = 0
+          Row = 0
+        end
+        item
+          Column = 1
+          Control = InventoryRec
+          Row = 3
+        end
+        item
+          Column = 0
+          Control = OtherInRec
+          Row = 3
+        end
+        item
+          Column = 0
+          Control = OtherOutRec
+          Row = 4
+        end
+        item
+          Column = 1
+          Control = rctngl1
+          Row = 4
+        end>
+      RowCollection = <
+        item
+          Value = 20.000000000000000000
+        end
+        item
+          Value = 20.000000000000000000
+        end
+        item
+          Value = 20.000000000000000000
+        end
+        item
+          Value = 20.000000000000000000
+        end
+        item
+          Value = 20.000000000000000000
+        end
+        item
+          SizeStyle = Auto
+        end>
+      object InventoryRec: TRectangle
+        Tag = 15
+        Align = Client
+        Anchors = []
+        Fill.Color = xFFE27594
+        Margins.Left = 6.000000000000000000
+        Margins.Top = 6.000000000000000000
+        Margins.Right = 6.000000000000000000
+        Margins.Bottom = 6.000000000000000000
+        Size.Width = 185.500000000000000000
+        Size.Height = 94.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Kind = None
+        OnClick = InventoryRecClick
+        object InventoryCA: TColorAnimation
+          Duration = 0.000009999999747379
+          Inverse = True
+          PropertyName = 'Fill.Color'
+          StartValue = xFFE27594
+          StopValue = x9FE27594
+          Trigger = 'IsMouseOver=true'
+          TriggerInverse = 'IsMouseOver=false'
+        end
+        object InventoryImg: TImage
+          MultiResBitmap.Height = 240
+          MultiResBitmap.Width = 240
+          MultiResBitmap = <
+            item
+              Width = 240
+              Height = 240
+              PNG = {
+                89504E470D0A1A0A0000000D49484452000000F0000000F008060000003E55E9
+                92000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                040449444154785EEDD08100000000C3A0F9531FE4855061C0800103060C1830
+                60C0800103060C183060C0800103060C183060C0800103060C183060C0800103
+                060C183060C0800103060C183060C0800103060C183060C0800103060C183060
+                C0800103060C183060C0800103060C183060C0800103060C183060C080010306
+                0C183060C0800103060C183060C0800103060C183060C0800103060C183060C0
+                800103060C183060C0800103060C183060C0800103060C183060C0800103060C
+                183060C0800103060C183060C0800103060C183060C0800103060C183060C080
+                0103060C183060C0800103060C183060C0800103060C183060C0800103060C18
+                3060C0800103060C183060C0800103060C183060C0800103060C183060C08001
+                03060C183060C0800103060C183060C0800103060C183060C0800103060C1830
+                60C0800103060C183060C0800103060C183060C0800103060C183060C0800103
+                060C183060C0800103060C183060C0800103060C183060C0800103060C183060
+                C0800103060C183060C0800103060C183060C0800103060C183060C080010306
+                0C183060C0800103060C183060C0800103060C183060C0800103060C183060C0
+                800103060C183060C0800103060C183060C0800103060C183060C0800103060C
+                183060C0800103060C183060C0800103060C183060C0800103060C183060C080
+                0103060C183060C0800103060C183060C0800103060C183060C0800103060C18
+                3060C0800103060C183060C0800103060C183060C0800103060C183060C08001
+                03060C183060C0800103060C183060C0800103060C183060C0800103060C1830
+                60C0800103060C183060C0800103060C183060C0800103060C183060C0800103
+                060C183060C0800103060C183060C0800103060C183060C0800103060C183060
+                C0800103060C183060C0800103060C183060C0800103060C183060C080010306
+                0C183060C0800103060C183060C0800103060C183060C0800103060C183060C0
+                800103060C183060C0800103060C183060C0800103060C183060C0800103060C
+                183060C0800103060C183060C0800103060C183060C0800103060C183060C080
+                0103060C183060C0800103060C183060C0800103060C183060C0800103060C18
+                3060C0800103060C183060C0800103060C183060C0800103060C183060C08001
+                03060C183060C0800103060C183060C0800103060C183060C0800103060C1830
+                60C0800103060C183060C0800103060C183060C0800103060C183060C0800103
+                060C183060C0800103060C183060C0800103060C183060C0800103060C183060
+                C0800103060C183060C0800103060C183060C0800103060C183060C080010306
+                0C183060C0800103060C183060C0800103060C183060C0800103060C183060C0
+                8001038F0303851D000132F5028F0000000049454E44AE426082}
+              FileName = 'F:\Demo\'#26679#26495'\image\actionbar_button_people_dark.png'
+            end>
+          Align = VertCenter
+          Locked = True
+          HitTest = False
+          Position.Y = -17.000000000000000000
+          Size.Width = 185.500000000000000000
+          Size.Height = 88.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object InventoryText: TText
+          Align = Bottom
+          Locked = True
+          HitTest = False
+          Margins.Bottom = 8.000000000000000000
+          Position.Y = 54.000000000000000000
+          Size.Width = 185.500000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          Text = #29616#23384#37327
+          TextSettings.Font.Family = #24494#36719#38597#40657
+          TextSettings.Font.Size = 22.000000000000000000
+          TextSettings.FontColor = claWhite
+        end
+      end
+      object PickingRec: TRectangle
+        Tag = 33
+        Align = Client
+        Fill.Color = xFFB973C4
+        Margins.Left = 6.000000000000000000
+        Margins.Top = 6.000000000000000000
+        Margins.Right = 6.000000000000000000
+        Margins.Bottom = 6.000000000000000000
+        Size.Width = 185.500000000000000000
+        Size.Height = 94.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Kind = None
+        OnClick = PickingRecClick
+        object PickingCA: TColorAnimation
+          Duration = 0.000009999999747379
+          Inverse = True
+          PropertyName = 'Fill.Color'
+          StartValue = xFFB973C4
+          StopValue = x97B973C4
+          Trigger = 'IsMouseOver=true'
+          TriggerInverse = 'IsMouseOver=false'
+        end
+        object PickingImg: TImage
+          MultiResBitmap = <
+            item
+              Width = 58
+              Height = 58
+              PNG = {
+                89504E470D0A1A0A0000000D494844520000003A0000003A0806000000E1BB4A
+                28000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                0053494441546843EDD03101000000C2A0F54F6D0A3F884061C0800103060C18
+                3060C0800103060C183060C0800103060C183060C0800103060C183060C08001
+                03060C183060C0800103060C183060C08081F7C00034CA000119396F70000000
+                0049454E44AE426082}
+            end>
+          Align = VertCenter
+          Locked = True
+          HitTest = False
+          Position.Y = -5.000000000000000000
+          Size.Width = 185.500000000000000000
+          Size.Height = 65.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object PickingText: TText
+          Align = Bottom
+          Locked = True
+          HitTest = False
+          Margins.Bottom = 8.000000000000000000
+          Position.Y = 54.000000000000000000
+          Size.Width = 185.500000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          Text = #29983#20135#39046#26009
+          TextSettings.Font.Family = #24494#36719#38597#40657
+          TextSettings.Font.Size = 22.000000000000000000
+          TextSettings.FontColor = claWhite
+        end
+      end
+      object Rectangle2: TRectangle
+        Tag = 30
+        Align = Client
+        Anchors = []
+        Fill.Color = claDarksalmon
+        Margins.Left = 6.000000000000000000
+        Margins.Top = 6.000000000000000000
+        Margins.Right = 6.000000000000000000
+        Margins.Bottom = 6.000000000000000000
+        Size.Width = 185.500000000000000000
+        Size.Height = 94.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Kind = None
+        OnClick = Rectangle2Click
+        object ColorAnimation2: TColorAnimation
+          Duration = 0.000009999999747379
+          Inverse = True
+          PropertyName = 'Fill.Color'
+          StartValue = claDarksalmon
+          StopValue = claSandybrown
+          Trigger = 'IsMouseOver=true'
+          TriggerInverse = 'IsMouseOver=false'
+        end
+        object Text2: TText
+          Align = Bottom
+          Locked = True
+          HitTest = False
+          Margins.Bottom = 8.000000000000000000
+          Position.Y = 54.000000000000000000
+          Size.Width = 185.500000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          Text = #22996#22806#20837#24211
+          TextSettings.Font.Family = #24494#36719#38597#40657
+          TextSettings.Font.Size = 22.000000000000000000
+          TextSettings.FontColor = claWhite
+        end
+        object Image8: TImage
+          MultiResBitmap.Height = 50
+          MultiResBitmap.Width = 50
+          MultiResBitmap = <
+            item
+              Width = 50
+              Height = 50
+              PNG = {
+                89504E470D0A1A0A0000000D49484452000000320000003208060000001E3F88
+                B1000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                0042494441546843EDD08100000000C3A0F9531FE4855061C0800103060C1830
+                60C0800103060C183060C0800103060C183060C0800103060C183060C0800103
+                061E0706274200012DA874920000000049454E44AE426082}
+              FileName = 'F:\Demo\'#26679#26495'\image\_ics_tab_phone_selected.png'
+            end>
+          Align = VertCenter
+          Locked = True
+          HitTest = False
+          Position.Y = -11.000000000000000000
+          Size.Width = 185.500000000000000000
+          Size.Height = 77.000000000000000000
+          Size.PlatformDefault = False
+        end
+      end
+      object ProductInRec: TRectangle
+        Tag = 32
+        Align = Client
+        Fill.Color = xFF7FC975
+        Margins.Left = 6.000000000000000000
+        Margins.Top = 6.000000000000000000
+        Margins.Right = 6.000000000000000000
+        Margins.Bottom = 6.000000000000000000
+        Size.Width = 185.500000000000000000
+        Size.Height = 94.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Kind = None
+        OnClick = ProductInRecClick
+        object ProductInCA: TColorAnimation
+          Duration = 0.000009999999747379
+          Inverse = True
+          PropertyName = 'Fill.Color'
+          StartValue = xFF7FC975
+          StopValue = x977FC975
+          Trigger = 'IsMouseOver=true'
+          TriggerInverse = 'IsMouseOver=false'
+        end
+        object ProductInimg: TImage
+          MultiResBitmap.Height = 64
+          MultiResBitmap.Width = 64
+          MultiResBitmap = <
+            item
+              Width = 64
+              Height = 64
+              PNG = {
+                89504E470D0A1A0A0000000D4948445200000040000000400806000000AA6971
+                DE000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                005F49444154785EEDD0010D000000C2A0F74F6D0E37884061C0800103060C18
+                3060C0800103060C183060C0800103060C183060C0800103060C183060C08001
+                03060C183060C0800103060C183060C0800103060C183060C0800103060CBC0F
+                0C40400001F11A210D0000000049454E44AE426082}
+              FileName = 'F:\Demo\'#26679#26495'\image\z_gen_ic_shop_enabled.png'
+            end>
+          Align = VertCenter
+          Locked = True
+          HitTest = False
+          Position.Y = -5.000000000000000000
+          Size.Width = 185.500000000000000000
+          Size.Height = 65.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object ProductInText: TText
+          Align = Bottom
+          Locked = True
+          HitTest = False
+          Margins.Bottom = 8.000000000000000000
+          Position.Y = 54.000000000000000000
+          Size.Width = 185.500000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          Text = #25104#21697#20837#24211
+          TextSettings.Font.Family = #24494#36719#38597#40657
+          TextSettings.Font.Size = 22.000000000000000000
+          TextSettings.FontColor = claWhite
+        end
+      end
+      object PurInRec: TRectangle
+        Tag = 21
+        Align = Client
+        Fill.Color = xFF3AABB5
+        Margins.Left = 6.000000000000000000
+        Margins.Top = 6.000000000000000000
+        Margins.Right = 6.000000000000000000
+        Margins.Bottom = 6.000000000000000000
+        Size.Width = 185.500000000000000000
+        Size.Height = 94.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Kind = None
+        OnClick = PurInRecClick
+        object PurInCA: TColorAnimation
+          Duration = 0.000009999999747379
+          Inverse = True
+          PropertyName = 'Fill.Color'
+          StartValue = xFF3AABB5
+          StopValue = x973AABB5
+          Trigger = 'IsMouseOver=true'
+          TriggerInverse = 'IsMouseOver=false'
+        end
+        object PurInImg: TImage
+          MultiResBitmap.Height = 58
+          MultiResBitmap.Width = 58
+          MultiResBitmap = <
+            item
+              Width = 58
+              Height = 58
+              PNG = {
+                89504E470D0A1A0A0000000D494844520000003A0000003A0806000000E1BB4A
+                28000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                0053494441546843EDD03101000000C2A0F54F6D0A3F884061C0800103060C18
+                3060C0800103060C183060C0800103060C183060C0800103060C183060C08001
+                03060C183060C0800103060C183060C08081F7C00034CA000119396F70000000
+                0049454E44AE426082}
+              FileName = 'F:\'#36164#26009'\png\'#21150#21345#21463#29702'.png'
+            end>
+          Align = VertCenter
+          Locked = True
+          HitTest = False
+          Position.Y = -6.000000000000000000
+          Size.Width = 185.500000000000000000
+          Size.Height = 67.000000000000000000
+          Size.PlatformDefault = False
+          WrapMode = Center
+        end
+        object PurInText: TText
+          Align = Bottom
+          Locked = True
+          HitTest = False
+          Margins.Bottom = 8.000000000000000000
+          Position.Y = 54.000000000000000000
+          Size.Width = 185.500000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          Text = #37319#36141#20837#24211
+          TextSettings.Font.Family = #24494#36719#38597#40657
+          TextSettings.Font.Size = 22.000000000000000000
+          TextSettings.FontColor = claWhite
+        end
+      end
+      object OutPichingRec: TRectangle
+        Tag = 21
+        Align = Client
+        Fill.Color = claSkyblue
+        Margins.Left = 6.000000000000000000
+        Margins.Top = 6.000000000000000000
+        Margins.Right = 6.000000000000000000
+        Margins.Bottom = 6.000000000000000000
+        Size.Width = 185.500000000000000000
+        Size.Height = 94.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Kind = None
+        OnClick = OutPichingRecClick
+        object ColorAnimation1: TColorAnimation
+          Duration = 0.000009999999747379
+          Inverse = True
+          PropertyName = 'Fill.Color'
+          StartValue = claSkyblue
+          StopValue = x973AABB5
+          Trigger = 'IsMouseOver=true'
+          TriggerInverse = 'IsMouseOver=false'
+        end
+        object Image7: TImage
+          MultiResBitmap.Height = 58
+          MultiResBitmap.Width = 58
+          MultiResBitmap = <
+            item
+              Width = 58
+              Height = 58
+              PNG = {
+                89504E470D0A1A0A0000000D494844520000003A0000003A0806000000E1BB4A
+                28000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                0053494441546843EDD03101000000C2A0F54F6D0A3F884061C0800103060C18
+                3060C0800103060C183060C0800103060C183060C0800103060C183060C08001
+                03060C183060C0800103060C183060C08081F7C00034CA000119396F70000000
+                0049454E44AE426082}
+              FileName = 'F:\'#36164#26009'\png\'#21150#21345#21463#29702'.png'
+            end>
+          Align = VertCenter
+          Locked = True
+          HitTest = False
+          Position.Y = -6.000000000000000000
+          Size.Width = 185.500000000000000000
+          Size.Height = 67.000000000000000000
+          Size.PlatformDefault = False
+          WrapMode = Center
+        end
+        object Text1: TText
+          Align = Bottom
+          Locked = True
+          HitTest = False
+          Margins.Bottom = 8.000000000000000000
+          Position.Y = 54.000000000000000000
+          Size.Width = 185.500000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          Text = #22996#22806#39046#26009
+          TextSettings.Font.Family = #24494#36719#38597#40657
+          TextSettings.Font.Size = 22.000000000000000000
+          TextSettings.FontColor = claWhite
+        end
+      end
+      object rctnglSaleOut: TRectangle
+        Tag = 21
+        Align = Client
+        Fill.Color = claSkyblue
+        Margins.Left = 6.000000000000000000
+        Margins.Top = 6.000000000000000000
+        Margins.Right = 6.000000000000000000
+        Margins.Bottom = 6.000000000000000000
+        Size.Width = 185.500000000000000000
+        Size.Height = 94.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Kind = None
+        OnClick = SaleOutRectClick
+        object ColorAnimation3: TColorAnimation
+          Duration = 0.000009999999747379
+          Inverse = True
+          PropertyName = 'Fill.Color'
+          StartValue = claSkyblue
+          StopValue = x973AABB5
+          Trigger = 'IsMouseOver=true'
+          TriggerInverse = 'IsMouseOver=false'
+        end
+        object Image1: TImage
+          MultiResBitmap.Height = 58
+          MultiResBitmap.Width = 58
+          MultiResBitmap = <
+            item
+              Width = 58
+              Height = 58
+              PNG = {
+                89504E470D0A1A0A0000000D494844520000003A0000003A0806000000E1BB4A
+                28000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                0053494441546843EDD03101000000C2A0F54F6D0A3F884061C0800103060C18
+                3060C0800103060C183060C0800103060C183060C0800103060C183060C08001
+                03060C183060C0800103060C183060C08081F7C00034CA000119396F70000000
+                0049454E44AE426082}
+              FileName = 'F:\'#36164#26009'\png\'#21150#21345#21463#29702'.png'
+            end>
+          Align = VertCenter
+          Locked = True
+          HitTest = False
+          Position.Y = -6.000000000000000000
+          Size.Width = 185.500000000000000000
+          Size.Height = 67.000000000000000000
+          Size.PlatformDefault = False
+          WrapMode = Center
+        end
+        object Text3: TText
+          Align = Bottom
+          Locked = True
+          HitTest = False
+          Margins.Bottom = 8.000000000000000000
+          Position.Y = 54.000000000000000000
+          Size.Width = 185.500000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          Text = #38144#21806#20986#24211
+          TextSettings.Font.Family = #24494#36719#38597#40657
+          TextSettings.Font.Size = 22.000000000000000000
+          TextSettings.FontColor = claWhite
+        end
+      end
+      object OtherInRec: TRectangle
+        Tag = 21
+        Align = Client
+        Fill.Color = claCadetblue
+        Margins.Left = 6.000000000000000000
+        Margins.Top = 6.000000000000000000
+        Margins.Right = 6.000000000000000000
+        Margins.Bottom = 6.000000000000000000
+        Size.Width = 185.500000000000000000
+        Size.Height = 94.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Kind = None
+        OnClick = OtherInRecClick
+        object OtherInCA: TColorAnimation
+          Duration = 0.000009999999747379
+          Inverse = True
+          PropertyName = 'Fill.Color'
+          StartValue = claCadetblue
+          StopValue = claCadetblue
+          Trigger = 'IsMouseOver=true'
+          TriggerInverse = 'IsMouseOver=false'
+        end
+        object OtherInIMG: TImage
+          MultiResBitmap.Height = 58
+          MultiResBitmap.Width = 58
+          MultiResBitmap = <
+            item
+              Width = 58
+              Height = 58
+              PNG = {
+                89504E470D0A1A0A0000000D494844520000003A0000003A0806000000E1BB4A
+                28000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                0053494441546843EDD03101000000C2A0F54F6D0A3F884061C0800103060C18
+                3060C0800103060C183060C0800103060C183060C0800103060C183060C08001
+                03060C183060C0800103060C183060C08081F7C00034CA000119396F70000000
+                0049454E44AE426082}
+              FileName = 'F:\'#36164#26009'\png\'#21150#21345#21463#29702'.png'
+            end>
+          Align = VertCenter
+          Locked = True
+          HitTest = False
+          Position.Y = -6.000000000000000000
+          Size.Width = 185.500000000000000000
+          Size.Height = 67.000000000000000000
+          Size.PlatformDefault = False
+          WrapMode = Center
+        end
+        object OtherInText: TText
+          Align = Bottom
+          Locked = True
+          HitTest = False
+          Margins.Bottom = 8.000000000000000000
+          Position.Y = 54.000000000000000000
+          Size.Width = 185.500000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          Text = #20854#20182#20837#24211
+          TextSettings.Font.Family = #24494#36719#38597#40657
+          TextSettings.Font.Size = 22.000000000000000000
+          TextSettings.FontColor = claWhite
+        end
+      end
+      object OtherOutRec: TRectangle
+        Tag = 21
+        Align = Client
+        Fill.Color = claThistle
+        Margins.Left = 6.000000000000000000
+        Margins.Top = 6.000000000000000000
+        Margins.Right = 6.000000000000000000
+        Margins.Bottom = 6.000000000000000000
+        Size.Width = 185.500000000000000000
+        Size.Height = 94.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Kind = None
+        OnClick = OtherOutRecClick
+        object OtherOutcd: TColorAnimation
+          Duration = 0.000009999999747379
+          Inverse = True
+          PropertyName = 'Fill.Color'
+          StartValue = claThistle
+          StopValue = claThistle
+          Trigger = 'IsMouseOver=true'
+          TriggerInverse = 'IsMouseOver=false'
+        end
+        object OtherOutimg: TImage
+          MultiResBitmap.Height = 58
+          MultiResBitmap.Width = 58
+          MultiResBitmap = <
+            item
+              Width = 58
+              Height = 58
+              PNG = {
+                89504E470D0A1A0A0000000D494844520000003A0000003A0806000000E1BB4A
+                28000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                0053494441546843EDD03101000000C2A0F54F6D0A3F884061C0800103060C18
+                3060C0800103060C183060C0800103060C183060C0800103060C183060C08001
+                03060C183060C0800103060C183060C08081F7C00034CA000119396F70000000
+                0049454E44AE426082}
+              FileName = 'F:\'#36164#26009'\png\'#21150#21345#21463#29702'.png'
+            end>
+          Align = VertCenter
+          Locked = True
+          HitTest = False
+          Position.Y = -6.000000000000000000
+          Size.Width = 185.500000000000000000
+          Size.Height = 67.000000000000000000
+          Size.PlatformDefault = False
+          WrapMode = Center
+        end
+        object OtherOutText: TText
+          Align = Bottom
+          Locked = True
+          HitTest = False
+          Margins.Bottom = 8.000000000000000000
+          Position.Y = 54.000000000000000000
+          Size.Width = 185.500000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          Text = #20854#20182#20986#24211
+          TextSettings.Font.Family = #24494#36719#38597#40657
+          TextSettings.Font.Size = 22.000000000000000000
+          TextSettings.FontColor = claWhite
+        end
+      end
+      object rctngl1: TRectangle
+        Tag = 21
+        Align = Client
+        Fill.Color = claThistle
+        Margins.Left = 6.000000000000000000
+        Margins.Top = 6.000000000000000000
+        Margins.Right = 6.000000000000000000
+        Margins.Bottom = 6.000000000000000000
+        Size.Width = 185.500000000000000000
+        Size.Height = 94.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Kind = None
+        OnClick = OtherOutRecClick
+        object clrnmtn1: TColorAnimation
+          Duration = 0.000009999999747379
+          Inverse = True
+          PropertyName = 'Fill.Color'
+          StartValue = claThistle
+          StopValue = claThistle
+          Trigger = 'IsMouseOver=true'
+          TriggerInverse = 'IsMouseOver=false'
+        end
+        object img1: TImage
+          MultiResBitmap.Height = 58
+          MultiResBitmap.Width = 58
+          MultiResBitmap = <
+            item
+              Width = 58
+              Height = 58
+              PNG = {
+                89504E470D0A1A0A0000000D494844520000003A0000003A0806000000E1BB4A
+                28000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                0053494441546843EDD03101000000C2A0F54F6D0A3F884061C0800103060C18
+                3060C0800103060C183060C0800103060C183060C0800103060C183060C08001
+                03060C183060C0800103060C183060C08081F7C00034CA000119396F70000000
+                0049454E44AE426082}
+              FileName = 'F:\'#36164#26009'\png\'#21150#21345#21463#29702'.png'
+            end>
+          Align = VertCenter
+          Locked = True
+          HitTest = False
+          Position.Y = -29.000000000000000000
+          Size.Width = 185.500000000000000000
+          Size.Height = 67.000000000000000000
+          Size.PlatformDefault = False
+          WrapMode = Center
+        end
+        object txt1: TText
+          Align = Bottom
+          Locked = True
+          HitTest = False
+          Margins.Bottom = 8.000000000000000000
+          Position.Y = 8.000000000000000000
+          Size.Width = 185.500000000000000000
+          Size.Height = 78.000000000000000000
+          Size.PlatformDefault = False
+          Text = 
+            'Fmx.Bind.Grid'#21333#20803#13#10#20004#22788#31867#20284#65306'Result := [mtUnknown, mtBCD, mtObject, mtB' +
+            'itmap];'#13#10#23558'mtBCD'#20174#38598#21512#20013#21024#38500
+          TextSettings.Font.Family = 'Algerian'
+          TextSettings.Font.Size = 10.000000000000000000
+          TextSettings.Font.StyleExt = {00040000000000000001000000}
+          TextSettings.FontColor = claWhite
+          TextSettings.HorzAlign = Leading
+        end
+      end
+    end
+    object BtnGPL: TGridPanelLayout
+      Align = Bottom
+      Position.Y = 608.000000000000000000
+      Size.Width = 395.000000000000000000
+      Size.Height = 35.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      ColumnCollection = <
+        item
+          Value = 50.000000000000000000
+        end
+        item
+          Value = 25.000000000000000000
+        end
+        item
+          Value = 25.000000000000000000
+        end>
+      ControlCollection = <
+        item
+          Column = 1
+          Control = btnLogin
+          Row = 0
+        end
+        item
+          Column = 2
+          Control = AboutCBtn
+          Row = 0
+        end
+        item
+          Column = 0
+          Control = lbl_LoginInfo
+          Row = 0
+        end>
+      RowCollection = <
+        item
+          Value = 100.000000000000000000
+        end
+        item
+          SizeStyle = Auto
+        end>
+      object btnLogin: TCornerButton
+        Tag = 1
+        Align = Client
+        Corners = [TopLeft]
+        StyledSettings = [Family]
+        Sides = [Top, Left, Bottom, Right]
+        Size.Width = 98.750000000000000000
+        Size.Height = 35.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'buttonTool'
+        TabOrder = 1
+        Text = #30331#24405
+        TextSettings.Font.Size = 14.000000000000000000
+        XRadius = 30.000000000000000000
+        YRadius = 30.000000000000000000
+        OnClick = btnLoginClick
+      end
+      object AboutCBtn: TCornerButton
+        Tag = 1
+        Align = Client
+        Corners = [TopLeft]
+        StyledSettings = [Family]
+        Sides = [Top, Left, Bottom, Right]
+        Size.Width = 98.750000000000000000
+        Size.Height = 35.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = #20851#20110
+        TextSettings.Font.Size = 14.000000000000000000
+        XRadius = 30.000000000000000000
+        YRadius = 30.000000000000000000
+        OnClick = AboutbtnClick
+      end
+      object lbl_LoginInfo: TLabel
+        Align = Client
+        StyledSettings = [Family, Style, FontColor]
+        Margins.Left = 4.000000000000000000
+        Size.Width = 193.500000000000000000
+        Size.Height = 35.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 14.000000000000000000
+        Text = #26410#30331#38470
+        TabOrder = 2
+      end
+    end
+    object MsgRec: TRectangle
+      Tag = 34
+      Align = Top
+      Fill.Color = xFFF9AC81
+      Margins.Bottom = 5.000000000000000000
+      Position.Y = 36.000000000000000000
+      Size.Width = 395.000000000000000000
+      Size.Height = 37.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+      OnClick = MsgRecClick
+      object MsgCA: TColorAnimation
+        Duration = 0.000009999999747379
+        Inverse = True
+        PropertyName = 'Fill.Color'
+        StartValue = xFFF9AC81
+        StopValue = x97F9AC81
+        Trigger = 'IsMouseOver=true'
+        TriggerInverse = 'IsMouseOver=false'
+      end
+      object MsgText: TText
+        Align = Client
+        Locked = True
+        HitTest = False
+        Size.Width = 395.000000000000000000
+        Size.Height = 37.000000000000000000
+        Size.PlatformDefault = False
+        Text = #27426#36814#20351#29992
+        TextSettings.Font.Family = 'Agency FB'
+        TextSettings.Font.Size = 16.000000000000000000
+        TextSettings.Font.StyleExt = {00070000000000000002000000}
+      end
+      object AniIndicator2: TAniIndicator
+        Align = Right
+        Enabled = True
+        Position.X = 312.000000000000000000
+        Size.Width = 52.000000000000000000
+        Size.Height = 48.000000000000000000
+        Size.PlatformDefault = False
+        Visible = False
+      end
+    end
+  end
+end

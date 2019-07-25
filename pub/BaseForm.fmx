@@ -1,0 +1,116 @@
+object BaseFrm: TBaseFrm
+  Left = 0
+  Top = 0
+  Caption = #22522#30784#31383#20307
+  ClientHeight = 658
+  ClientWidth = 434
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  OnClose = FormClose
+  OnKeyUp = FormKeyUp
+  DesignerMasterStyle = 0
+  object TitleRet: TRectangle
+    Align = Top
+    Fill.Kind = Gradient
+    Fill.Gradient.Points = <
+      item
+        Color = xFF24AAE7
+        Offset = 0.000000000000000000
+      end
+      item
+        Color = xFF2BB3EA
+        Offset = 1.000000000000000000
+      end>
+    Fill.Gradient.StartPosition.X = 0.500000000000000000
+    Fill.Gradient.StartPosition.Y = 1.000000000000000000
+    Fill.Gradient.StopPosition.X = 0.499999970197677600
+    Fill.Gradient.StopPosition.Y = 0.000000000000000000
+    Size.Width = 434.000000000000000000
+    Size.Height = 35.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Kind = None
+    object btn_BaseBack: TButton
+      Align = Left
+      Locked = True
+      Size.Width = 40.000000000000000000
+      Size.Height = 35.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      OnClick = btn_BaseBackClick
+    end
+    object txt_BaseTitle: TText
+      Align = Client
+      Locked = True
+      HitTest = False
+      Margins.Left = 10.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Size.Width = 374.000000000000000000
+      Size.Height = 35.000000000000000000
+      Size.PlatformDefault = False
+      Text = #26174#31034#26694#26550
+      TextSettings.Font.Family = #24494#36719#38597#40657
+      TextSettings.Font.Size = 20.000000000000000000
+      TextSettings.FontColor = claWhite
+      TextSettings.HorzAlign = Leading
+    end
+  end
+  object ClientSCB: TVertScrollBox
+    Align = Client
+    Size.Width = 434.000000000000000000
+    Size.Height = 623.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Viewport.Width = 434.000000000000000000
+    Viewport.Height = 623.000000000000000000
+    object ClientLyt: TLayout
+      Align = Client
+      Size.Width = 434.000000000000000000
+      Size.Height = 623.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+    end
+  end
+  object MsgRec: TRectangle
+    Tag = 34
+    Align = Top
+    Fill.Color = xFFF9AC81
+    Margins.Bottom = 5.000000000000000000
+    Position.Y = 30.000000000000000000
+    Size.Width = 434.000000000000000000
+    Size.Height = 30.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Kind = None
+    Visible = False
+    object MsgCA: TColorAnimation
+      Duration = 0.000009999999747379
+      Inverse = True
+      PropertyName = 'Fill.Color'
+      StartValue = xFFF9AC81
+      StopValue = x97F9AC81
+      Trigger = 'IsMouseOver=true'
+      TriggerInverse = 'IsMouseOver=false'
+    end
+    object txt_BaseMsg: TText
+      Align = Client
+      Locked = True
+      HitTest = False
+      Size.Width = 434.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      Text = #27426#36814#20351#29992
+      TextSettings.Font.Family = #24494#36719#38597#40657
+      TextSettings.Font.Size = 22.000000000000000000
+    end
+    object AniIndicator: TAniIndicator
+      Align = Right
+      Enabled = True
+      Position.X = 312.000000000000000000
+      Size.Width = 52.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      Visible = False
+    end
+  end
+end

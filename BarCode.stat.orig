@@ -1,0 +1,22 @@
+[Stats]
+<<<<<<< HEAD
+EditorSecs=144279
+DesignerSecs=13792
+InspectorSecs=4361
+CompileSecs=6340181
+OtherSecs=22231
+StartTime=2018/7/26 17:04:44
+RealKeys=0
+EffectiveKeys=0
+DebugSecs=121312
+=======
+EditorSecs=173156
+DesignerSecs=8392
+InspectorSecs=4539
+CompileSecs=6765997
+OtherSecs=23152
+StartTime=2018-07-16 9:17:45
+RealKeys=0
+EffectiveKeys=0
+DebugSecs=165610
+>>>>>>> 99732c82297289bc607e132627a6db6fdd34b504

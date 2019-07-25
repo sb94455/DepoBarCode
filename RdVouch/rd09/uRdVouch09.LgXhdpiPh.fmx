@@ -1,0 +1,87 @@
+inherited frm_RdVouch08_LgXhdpiPh: Tfrm_RdVouch08_LgXhdpiPh
+  ClientHeight = 695
+  ClientWidth = 450
+  DesignerMasterStyle = 0
+  inherited TitleRet: TRectangle
+    Size.Width = 450.000000000000000000
+    inherited txt_BaseTitle: TText
+      Size.Width = 250.000000000000000000
+    end
+    inherited btn_ClearDetail: TButton
+      Position.X = 380.000000000000000000
+    end
+    inherited btn_Save: TButton
+      Position.X = 310.000000000000000000
+    end
+  end
+  inherited ClientSCB: TVertScrollBox
+    Size.Width = 450.000000000000000000
+    Size.Height = 660.000000000000000000
+    Viewport.Width = 450.000000000000000000
+    Viewport.Height = 660.000000000000000000
+    inherited ClientLyt: TLayout
+      Size.Width = 450.000000000000000000
+      Size.Height = 660.000000000000000000
+      inherited BillCodeLay: TLayout
+        Size.Width = 446.000000000000000000
+        inherited edt_QRCode: TEdit
+          Size.Width = 334.000000000000000000
+          Size.Height = 32.000000000000000000
+          inherited ClearEditButton1: TClearEditButton
+            Size.Height = 30.000000000000000000
+          end
+          inherited EllipsesEditButton1: TEllipsesEditButton
+            Size.Height = 28.000000000000000000
+          end
+        end
+        inherited cbRed: TCheckBox
+          Position.X = 396.000000000000000000
+        end
+      end
+      inherited lyt_Main: TLayout
+        Size.Width = 450.000000000000000000
+      end
+      inherited DetailLay: TLayout
+        Size.Width = 450.000000000000000000
+        Size.Height = 476.000000000000000000
+        inherited TabControl1: TTabControl
+          Size.Width = 450.000000000000000000
+          Size.Height = 476.000000000000000000
+          Sizes = (
+            450s
+            427s
+            450s
+            427s)
+          inherited Tab_Detail: TTabItem
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+            Size.Width = 225.000000000000000000
+            ExplicitSize.cx = 139.000000000000000000
+            ExplicitSize.cy = 49.000000000000000000
+            inherited StringGrid_Detail: TStringGrid
+              Size.Width = 450.000000000000000000
+              Size.Height = 427.000000000000000000
+              Options = [ColumnResize, ColumnMove, ColLines, RowLines, Tabs, Header, HeaderClick, AutoDisplacement]
+              Viewport.Width = 450.000000000000000000
+              Viewport.Height = 427.000000000000000000
+            end
+          end
+          inherited TabItem1: TTabItem
+            TextSettings.Font.StyleExt = {00070000000000000004000000}
+            Size.Width = 225.000000000000000000
+            ExplicitSize.cx = 139.000000000000000000
+            ExplicitSize.cy = 49.000000000000000000
+            inherited Memo1: TMemo
+              Size.Width = 450.000000000000000000
+              Size.Height = 427.000000000000000000
+              Viewport.Width = 450.000000000000000000
+              Viewport.Height = 427.000000000000000000
+            end
+          end
+        end
+      end
+    end
+  end
+  inherited fdm_SubDetail: TFDMemTable
+    AfterOpen = nil
+  end
+end

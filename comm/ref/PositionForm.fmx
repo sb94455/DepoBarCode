@@ -1,0 +1,136 @@
+inherited PositionFrm: TPositionFrm
+  Caption = #26597#35810#36135#20301
+  ClientHeight = 548
+  DesignerMasterStyle = 0
+  inherited TitleRet: TRectangle
+    inherited txt_BaseTitle: TText
+      Size.Width = 304.000000000000000000
+      Text = #36135#20301#26597#35810
+    end
+    object Confirm: TButton
+      Align = Right
+      Position.X = 364.000000000000000000
+      Size.Width = 70.000000000000000000
+      Size.Height = 35.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'listitembutton'
+      TabOrder = 3
+      Text = #30830#23450
+      OnClick = ConfirmClick
+    end
+  end
+  inherited ClientSCB: TVertScrollBox
+    Size.Height = 513.000000000000000000
+    Viewport.Width = 434.000000000000000000
+    Viewport.Height = 513.000000000000000000
+    inherited ClientLyt: TLayout
+      Size.Height = 513.000000000000000000
+      object cCodeLay: TLayout
+        Align = Top
+        Margins.Top = 4.000000000000000000
+        Margins.Right = 4.000000000000000000
+        Position.Y = 4.000000000000000000
+        Size.Width = 430.000000000000000000
+        Size.Height = 30.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 10
+        object cInvAddCodeText: TText
+          Align = Left
+          Size.Width = 60.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          Text = #26597#25214#20869#23481
+          TextSettings.Font.Family = #24494#36719#38597#40657
+        end
+        object edt_Search: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          TabOrder = 1
+          TextSettings.FontColor = xFF666666
+          Margins.Right = 10.000000000000000000
+          Size.Width = 360.000000000000000000
+          Size.Height = 30.000000000000000000
+          Size.PlatformDefault = False
+          StyledSettings = [Family, Size, Style]
+          OnKeyUp = edt_SearchKeyUp
+          object clsBtn_1: TClearEditButton
+            CanFocus = False
+            Cursor = crArrow
+            Size.Width = 28.000000000000000000
+            Size.Height = 26.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+          end
+          object srhBtn_1: TSearchEditButton
+            CanFocus = False
+            Cursor = crArrow
+            Position.X = 28.000000000000000000
+            Size.Width = 28.000000000000000000
+            Size.Height = 26.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 1
+            OnClick = srhBtn_1Click
+          end
+        end
+      end
+      object DetailLay: TLayout
+        Align = Client
+        Size.Width = 434.000000000000000000
+        Size.Height = 479.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        object DetailText: TText
+          Align = Top
+          Size.Width = 434.000000000000000000
+          Size.Height = 33.000000000000000000
+          Size.PlatformDefault = False
+          Text = #26597#35810#32467#26524
+          TextSettings.Font.Family = #24494#36719#38597#40657
+        end
+        object stringGrid_Position: TStringGrid
+          Align = Client
+          CanFocus = True
+          ClipChildren = True
+          Size.Width = 434.000000000000000000
+          Size.Height = 446.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          RowCount = 0
+          Options = [Editing, ColumnResize, ColumnMove, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
+          OnCellDblClick = stringGrid_PositionCellDblClick
+          Viewport.Width = 430.000000000000000000
+          Viewport.Height = 421.000000000000000000
+        end
+      end
+    end
+  end
+  object FDM_Position: TFDMemTable
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 280
+    Top = 373
+  end
+  object BindSourceDB_Position: TBindSourceDB
+    DataSet = FDM_Position
+    ScopeMappings = <>
+    Left = 184
+    Top = 376
+  end
+  object BindingsList_Position: TBindingsList
+    Methods = <>
+    OutputConverters = <>
+    Left = 84
+    Top = 389
+    object LinkGridToData_Position: TLinkGridToDataSource
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB_Position
+      GridControl = stringGrid_Position
+      Columns = <>
+    end
+  end
+end

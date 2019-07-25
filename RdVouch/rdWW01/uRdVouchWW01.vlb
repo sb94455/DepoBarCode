@@ -1,0 +1,12 @@
+﻿[fdm_Main]
+Visible=False
+
+[fdm_Sub]
+Visible=False
+
+[fdm_Detail]
+Visible=False
+
+[WareHouseFrm.FDM_WareHouse]
+Visible=False
+

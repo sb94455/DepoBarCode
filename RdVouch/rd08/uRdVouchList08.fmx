@@ -1,0 +1,131 @@
+inherited frm_RdVouchList08: Tfrm_RdVouchList08
+  Caption = #21333#25454#21015#34920
+  DesignerMasterStyle = 0
+  inherited TitleRet: TRectangle
+    inherited btn_BaseBack: TButton
+      Text = #36820#22238
+    end
+    inherited txt_BaseTitle: TText
+      Size.Width = 274.000000000000000000
+      Text = #21333#25454#21015#34920
+      TextSettings.Font.Size = 15.000000000000000000
+    end
+    object btn_ViewVouch: TButton
+      Align = Right
+      Position.X = 384.000000000000000000
+      Size.Width = 50.000000000000000000
+      Size.Height = 35.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = #26597#30475
+      OnClick = btn_ViewVouchClick
+    end
+    object btn_NewVouch: TButton
+      Align = Right
+      Position.X = 334.000000000000000000
+      Size.Width = 50.000000000000000000
+      Size.Height = 35.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Text = #26032#24314
+      OnClick = btn_NewVouchClick
+    end
+  end
+  inherited ClientSCB: TVertScrollBox
+    Viewport.Width = 434.000000000000000000
+    Viewport.Height = 623.000000000000000000
+    inherited ClientLyt: TLayout
+      object lyt_Main: TLayout
+        Align = Top
+        Size.Width = 434.000000000000000000
+        Size.Height = 145.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+      end
+      object DetailText: TText
+        Align = Top
+        Margins.Top = 3.000000000000000000
+        Position.Y = 148.000000000000000000
+        Size.Width = 434.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Family = #24494#36719#38597#40657
+        object QueryBtn: TButton
+          Align = Right
+          Position.X = 364.000000000000000000
+          Size.Width = 70.000000000000000000
+          Size.Height = 33.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          Text = #26597#35810
+          OnClick = QueryBtnClick
+        end
+        object ClearBtn: TButton
+          Align = FitLeft
+          Size.Width = 69.666656494140630000
+          Size.Height = 33.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          Text = #28165#31354
+          OnClick = ClearBtnClick
+        end
+      end
+      object stringGrid_VouchList: TStringGrid
+        Align = Client
+        CanFocus = True
+        ClipChildren = True
+        Margins.Top = 2.000000000000000000
+        Size.Width = 434.000000000000000000
+        Size.Height = 440.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'DataGridStyle1'
+        TextSettings.Font.Size = 10.000000000000000000
+        StyledSettings = [Family, Style, FontColor]
+        TabOrder = 0
+        RowCount = 0
+        Options = [ColumnResize, ColumnMove, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
+        Viewport.Width = 434.000000000000000000
+        Viewport.Height = 440.000000000000000000
+      end
+    end
+  end
+  object FDM_VouchList: TFDMemTable
+    AfterOpen = FDM_VouchListAfterOpen
+    FieldDefs = <>
+    IndexDefs = <>
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    StoreDefs = True
+    Left = 72
+    Top = 327
+  end
+  object BindSourceDB_VouchList: TBindSourceDB
+    DataSet = FDM_VouchList
+    ScopeMappings = <>
+    Left = 176
+    Top = 328
+  end
+  object BindingsList1: TBindingsList
+    Methods = <>
+    OutputConverters = <>
+    Left = 316
+    Top = 349
+    object LinkGridToData_VouchList: TLinkGridToDataSource
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB_VouchList
+      GridControl = stringGrid_VouchList
+      Columns = <>
+    end
+  end
+  object BindSourceDB_Dict: TBindSourceDB
+    DataSet = U8DM.FDM_SZHL_ItmDef
+    ScopeMappings = <>
+    Left = 176
+    Top = 440
+  end
+end

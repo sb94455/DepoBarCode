@@ -1,0 +1,14 @@
+inherited frm_Rd01VouchList: Tfrm_Rd01VouchList
+  Caption = 'frm_RdVouchList1'
+  DesignerMasterStyle = 0
+  inherited ClientSCB: TVertScrollBox
+    Viewport.Width = 450.000000000000000000
+    Viewport.Height = 635.000000000000000000
+    inherited ClientLyt: TLayout
+      inherited stringGrid_VouchList: TStringGrid
+        Viewport.Width = 450.000000000000000000
+        Viewport.Height = 452.000000000000000000
+      end
+    end
+  end
+end

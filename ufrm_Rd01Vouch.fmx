@@ -1,0 +1,45 @@
+inherited frm_Rd01Vouch: Tfrm_Rd01Vouch
+  Caption = 'frm_RdVouch1'
+  DesignerMasterStyle = 0
+  inherited ClientSCB: TVertScrollBox
+    Viewport.Width = 412.000000000000000000
+    Viewport.Height = 583.000000000000000000
+    inherited ClientLyt: TLayout
+      inherited DetailLay: TLayout
+        inherited TabControl1: TTabControl
+          Sizes = (
+            409s
+            374s
+            409s
+            374s
+            409s
+            374s)
+          inherited Tab_Sub: TTabItem
+            ExplicitSize.cx = 44.000000000000000000
+            ExplicitSize.cy = 26.000000000000000000
+            inherited StringGrid_Sub: TStringGrid
+              Viewport.Width = 409.000000000000000000
+              Viewport.Height = 374.000000000000000000
+            end
+          end
+          inherited Tab_Detail: TTabItem
+            ExplicitSize.cx = 44.000000000000000000
+            ExplicitSize.cy = 26.000000000000000000
+            inherited StringGrid_Detail: TStringGrid
+              Viewport.Width = 409.000000000000000000
+              Viewport.Height = 374.000000000000000000
+            end
+          end
+          inherited TabItem1: TTabItem
+            ExplicitSize.cx = 65.000000000000000000
+            ExplicitSize.cy = 21.000000000000000000
+            inherited Memo1: TMemo
+              Viewport.Width = 409.000000000000000000
+              Viewport.Height = 374.000000000000000000
+            end
+          end
+        end
+      end
+    end
+  end
+end

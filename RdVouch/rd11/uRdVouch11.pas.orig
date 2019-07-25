@@ -1,0 +1,878 @@
+ï»¿unit uRdVouch11;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, StrUtils, Xml.XMLDoc, Xml.XMLIntf, FMX.Types,
+  FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, Soap.SOAPHTTPClient, BaseForm, FMX.Layouts, FMX.DateTimeCtrls, FMX.Objects,
+  FMX.Controls.Presentation, FMX.StdCtrls, FMX.Ani, FMX.ListBox, FMX.Edit, FMX.ScrollBox, FMX.Memo, System.Rtti,
+  MaterialOutService, FMX.Grid.Style, FMX.Grid, UnitLib, WareHouseForm, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf, System.Bindings.Outputs, FMX.Bind.Editors,
+  Data.Bind.EngExt, FMX.Bind.DBEngExt, Data.Bind.Components, Data.Bind.DBScope, Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
+  FMX.Bind.Grid, Data.Bind.Grid, FMX.TabControl, Data.Bind.Controls, FMX.Bind.Navigator;
+
+type
+  Tfrm_RdVouch11 = class(TBaseFrm)
+    DetailLay: TLayout;
+    BillCodeLay: TLayout;
+    edt_QRCode: TEdit;
+    btn_Save: TButton;
+    fdmtbl_Main: TFDMemTable;
+    fdmtbl_Ref: TFDMemTable;
+    fdmtbl_Detail: TFDMemTable;
+    BindSourceDB_Main: TBindSourceDB;
+    BindingsList1: TBindingsList;
+    lyt_Main: TLayout;
+    ClearEditButton1: TClearEditButton;
+    BdSrcDb_Detail: TBindSourceDB;
+    BdSrcDb_Ref: TBindSourceDB;
+    TabControl1: TTabControl;
+    tbtm_Ref: TTabItem;
+    tbtm_Detail: TTabItem;
+    LinkGridToData_Sub: TLinkGridToDataSource;
+    strngrd_Ref: TStringGrid;
+    strngrd_Detail: TStringGrid;
+    LinkGridToData_Detail: TLinkGridToDataSource;
+    btn_ClearDetail: TButton;
+    lbl_txt_QRCodeLabe: TLabel;
+    EllipsesEditButton1: TEllipsesEditButton;
+    tbtm_t1: TTabItem;
+    Memo1: TMemo;
+    strngrd_Detail_Sub: TStringGrid;
+    TabControlDetail: TTabControl;
+    tbtmDetailList: TTabItem;
+    tbtmDetailCard: TTabItem;
+    fdmtbl_Detail_sub: TFDMemTable;    //æ˜ç»†è¡¨çš„å­è¡¨
+    LayDetailCard: TLayout;
+    BindNavigator1: TBindNavigator;
+    BindSourceDB_SubDetail: TBindSourceDB;
+    LinkGridToData_SubDetail: TLinkGridToDataSource;
+    procedure FormCreate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure fdmtbl_MainAfterOpen(DataSet: TDataSet);
+    procedure FormShow(Sender: TObject);
+    procedure btn_SaveClick(Sender: TObject);
+    procedure fdmtbl_RefAfterOpen(DataSet: TDataSet);
+    procedure fdmtbl_DetailAfterOpen(DataSet: TDataSet);
+    procedure fdmtbl_DetailAfterPost(DataSet: TDataSet);
+    procedure fdmtbl_MainAfterInsert(DataSet: TDataSet);
+    procedure fdmtbl_MainBeforePost(DataSet: TDataSet);
+    procedure fdmtbl_DetailBeforePost(DataSet: TDataSet);
+    procedure btn_ClearDetailClick(Sender: TObject);
+    procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char; Shift: TShiftState);
+    procedure edt_QRCodeKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char; Shift: TShiftState);
+<<<<<<< HEAD
+    procedure strngrd_DetailCellDblClick(const Column: TColumn; const Row: Integer);
+    procedure fdmtbl_Detail_subAfterOpen(DataSet: TDataSet);
+    procedure fdmtbl_RefAfterScroll(DataSet: TDataSet);
+    procedure strngrd_Detail_SubCellDblClick(const Column: TColumn; const Row: Integer);
+=======
+    procedure StringGrid_DetailCellDblClick(const Column: TColumn; const Row: Integer);
+    procedure fdm_SubDetailAfterOpen(DataSet: TDataSet);
+    procedure fdm_SubAfterScroll(DataSet: TDataSet);
+    procedure StringGrid_SubDetailCellDblClick(const Column: TColumn; const Row: Integer);
+    procedure StringGrid_SubCellDblClick(const Column: TColumn;
+      const Row: Integer);
+>>>>>>> 99732c82297289bc607e132627a6db6fdd34b504
+  private
+    { Private declarations }
+    dosub: Boolean;
+    FVouchObj: TSZHL_Vouch;
+    FRdFlag: Boolean;
+    FQRCode: string;
+    FPosition: string;
+    Append1: TFDMemTable;
+    // FcWhCode: string;
+    function GetPostXML(): string;
+    procedure DecryptQRCode;
+    procedure setDefaulPosition(Value: string);
+    function GetcWhCode: string;
+    procedure ShowSubDetail;
+  protected
+  public
+    procedure InitData; override;
+    procedure RefreshData; override;
+    property Position: string read FPosition write setDefaulPosition;
+    property cWhCode: string read GetcWhCode;
+    property QRCode: string read FQRCode write FQRCode;
+    property VouObj: TSZHL_Vouch read FVouchObj write FVouchObj;
+    property RdFlag: Boolean read FRdFlag write FRdFlag;
+  end;
+
+var
+  frm_RdVouch11: Tfrm_RdVouch11;
+
+implementation
+
+{$R *.fmx}
+
+uses
+  UnitU8DM;
+
+procedure Tfrm_RdVouch11.btn_ClearDetailClick(Sender: TObject);
+begin
+  if Main.State in [dsInsert, dsEdit] then
+    Main.Cancel;
+  ClearChildCtrl(lyt_Main, true); // æ¸…ç©º&æ˜¾ç¤º/éšè—
+  Main.Append;
+  Detail.EmptyDataSet;
+  Ref.EmptyDataSet;
+end;
+
+procedure Tfrm_RdVouch11.btn_SaveClick(Sender: TObject);
+
+  procedure HttpPost();
+  var
+    Service_Data: MaterialOutServiceSoap;
+    strReturn: string;
+    tmpHTTPRIO: THTTPRIO;
+  begin
+    try
+      if Memo1.Text.Trim.IsEmpty then
+        Memo1.Text := GetPostXML();
+
+      tmpHTTPRIO := THTTPRIO.Create(self);
+      Service_Data := GetMaterialOutServiceSoap(False, PubVar_AppServer + Const_Url_Def_MaterialOut, tmpHTTPRIO);
+      strReturn := Service_Data.Insert(Memo1.Text.Trim);
+
+      if not SameText(strReturn, 'OK') then
+      begin
+        showmessage(format('å•æ®%sä¿å­˜å¤±è´¥.'#10#13'%s', [Main.FieldByName('cCode').AsString, strReturn]));
+      end
+      else
+        showmessage(format('å•æ®%sä¿å­˜æˆåŠŸ.'#10#13'%s', [Main.FieldByName('cCode').AsString, strReturn]));
+
+    except
+      on E: Exception do
+      begin
+        showmessage(E.Message);
+      end;
+    end;
+
+  end;
+
+begin
+  inherited;
+  if Main.State in [dsEdit, dsInsert] then
+    Main.Post;
+  if Detail.State in [dsEdit, dsInsert] then
+    Detail.Post;
+  HttpPost;
+end;
+
+procedure Tfrm_RdVouch11.DecryptQRCode;                    //Â¼Èë¶şÎ¬Âë¼ì²é
+var
+  cmd, strVouchsSql, strDesInvCode: string;
+  fdm_Ref, fdm_SubDetail_Copy: TFDMemTable;
+  QRQty, QRQty_Sub_Detail_Amt, MinQty: double;
+  SubQty, SubQtyRmt, SubQtyAmt: double;
+
+  function GetSourceVouchKeyValue(): string;
+  begin
+    Result := GetValueByKey(FQRCode, FVouchObj.SrcKeyField);
+  end;
+
+begin
+  if edt_QRCode.Text.Trim.Length = 0 then
+    exit;
+
+  FQRCode := edt_QRCode.Text;
+
+  cmd := Trim(GetValueByKey(FQRCode, 'c'));
+  if SameText(cmd, 'W') = true then
+  begin
+    Main.FieldByName('cWhCode').Value := Trim(GetValueByKey(FQRCode, 'cWhCode'));
+    edt_QRCode.Text := '';
+  end;
+  if SameText(cmd, 'P') = true then
+  begin
+    Position := Trim(GetValueByKey(FQRCode, 'cPosition'));
+    edt_QRCode.Text := '';
+  end;
+  if SameText(cmd, 'S') = true then // æ¥æºï¼Œæš‚æ—¶åªå…è®¸ä¸€ä¸ªå•æ®æ¥æºï¼Œä¸”ä¸å…è®¸ç‰©æ–™é‡å¤ã€‚
+  begin
+<<<<<<< HEAD
+    if Append1 = nil then
+      Append1 := TFDMemTable.Create(nil);
+    if Ref.RecordCount > 0 then // ç›®å‰åªæ¥å—ä¸€ä¸ªæ¥æºçš„å½•å…¥æ–¹å¼
+=======
+
+    if fdm_append = nil then
+      fdm_append := TFDMemTable.Create(nil);
+    if fdm_Sub.RecordCount > 0 then // Ä¿Ç°Ö»½ÓÊÜÒ»¸öÀ´Ô´µÄÂ¼Èë·½Ê½
+>>>>>>> 99732c82297289bc607e132627a6db6fdd34b504
+      exit;
+
+    strVouchsSql := format('select *,0.00 as %s  from %s where %s = (''%s'')', [FVouchObj.SrcQty_AmtField, FVouchObj.SrcTable,
+
+      FVouchObj.SrcLinkMainField, GetValueByKey(FQRCode, VouObj.SrcLinkMainField)]);
+    // showmessage(GetValueByKey(FQRCode, VouObj.SrcLinkMainField));
+    // showmessage(strVouchsSql);
+    DM_Global.ExecSql(Append1, strVouchsSql);
+    Ref.AppendData(Append1);
+    if Ref.RecordCount > 0 then
+      if Main.State in [dsInsert, dsEdit] then
+      begin
+        Main.FieldByName('cDepCode').Value := Append1.FieldByName('MDeptCode').AsString.Trim;
+        Main.FieldByName('cMPoCode').Value := Append1.FieldByName('MoCode').AsString.Trim;
+      end;
+
+    edt_QRCode.Text := '';
+
+  end;
+  if SameText(cmd, 'A') = true then
+  begin
+    // if fdm_append = nil then
+    // fdm_append := TFDMemTable.Create(nil);
+
+    // strVouchsSql := format('select *,0.00 as %s  from %s where %s = (''%s'')', [FVouchObj.SrcQty_AmtField, FVouchObj.SrcTable,
+    // FVouchObj.SrcLinkDesSubField, GetValueByKey(FQRCode, VouObj.SrcLinkDesSubField)]);
+    //
+    // DM_Global.ExecSql(fdm_append, strVouchsSql);
+    // if not fdm_append.eof then
+
+    // if Trim(fdm_Main.FieldByName('cWhCode').AsString) = '' then
+    // begin
+    // showmessage('è¯·å…ˆé€‰æ‹©ä»“åº“!');
+    // Abort;
+    // end;
+
+    if (Detail.State in [dsEdit, dsInsert]) then
+    begin
+      Detail.Post;
+    end;
+    if Detail.Locate('cDefine33', VarArrayOf([GetValueByKey(FQRCode, 'SN')]), [loPartialKey]) then
+    begin
+      showmessage('ä¸å…è®¸é‡å¤æ‰«ç ã€‚');
+      Abort;
+    end;
+    if Main.FieldByName('cWhCode').AsString.Trim.IsEmpty then
+    begin
+      showmessage('è¯·é€‰æ‹©ä»“åº“åå†è¯•ã€‚');
+      Abort;
+    end;
+<<<<<<< HEAD
+    if DM_Global.CheckSnUsed('11', GetValueByKey(FQRCode, 'SN')) then // ä¸æ•°æ®åº“å·²æœ‰æ¯”å¯¹ï¼ŒæŒ‰å•æ®ç±»å‹
+=======
+    if DM_Global.CheckSnUsed('11', GetValueByKey(FQRCode, 'SN')) then //ÓëÊı¾İ¿âÒÑÓĞ±È¶Ô£¬°´µ¥¾İÀàĞÍ
+>>>>>>> 99732c82297289bc607e132627a6db6fdd34b504
+    begin
+      showmessage('è¯¥æ¡ç å·²ç»ä½¿ç”¨ï¼Œä¸å…è®¸é‡å¤æ‰«ç ã€‚');
+      Abort;
+    end;
+<<<<<<< HEAD
+    strDesInvCode := GetValueByKey(FQRCode, 'cInvCode');
+    QRQty := StrToFloat(GetValueByKey(FQRCode, 'iQuantity'));
+    QRQty_Sub_Detail_Amt := QRQty;
+    if Ref.Locate('cInvCode', VarArrayOf([strDesInvCode]), [loPartialKey]) then
+    begin
+      fdm_SubDetail_Copy := TFDMemTable.Create(nil);     //å‚ç…§å†…å­˜è¡¨ã€‚æµ‹è¯•å³å°†å†™å…¥çš„æ•°é‡æœ‰æ²¡æœ‰è¶…é™
+      fdm_SubDetail_Copy.CopyDataSet(fdm_Detail_Detail, [coStructure, coIndexesCopy, coIndexesReset, coConstraintsReset,
+        coAggregatesReset, coRestart, coAppend]);
+
+      if fdm_Detail_Detail.RecordCount > 0 then
+=======
+    strDesInvCode := GetValueByKey(FQRCode, 'cInvCode');            //¶ÁÈ¡ÌõÂëĞÅÏ¢
+    QRQty := strtofloat(GetValueByKey(FQRCode, 'iQuantity'));
+    QRQty_Sub_Detail_Amt := QRQty;
+    if fdm_Sub.Locate('cInvCode', VarArrayOf([strDesInvCode]), [loPartialKey]) then         //ÖØÖÃÊı¾İ
+    begin
+      fdm_SubDetail_Copy := TFDMemTable.Create(nil);
+      //fdm_SubDetail_Copy.CreateDataSet();
+      //fdm_SubDetail_Copy.AppendData(fdm_SubDetail.Data);
+      fdm_SubDetail_Copy.CopyDataSet(fdm_SubDetail, [coStructure, coIndexesCopy, coIndexesReset, coConstraintsReset,coAggregatesReset, coRestart, coAppend]);
+      if fdm_SubDetail.RecordCount > 0 then
+>>>>>>> 99732c82297289bc607e132627a6db6fdd34b504
+      begin
+        fdm_Detail_Detail.First;
+        while not fdm_Detail_Detail.Eof do
+        begin
+<<<<<<< HEAD
+          if SameText(fdm_Detail_Detail.FieldByName('cWhCode').AsString.Trim, Main.FieldByName('cInvCodecWhCode').AsString)
+            then
+            if SameText(fdm_Detail_Detail.FieldByName('cBatch').AsString.Trim, GetValueByKey(FQRCode, 'Batch')) then
+              if SameText(fdm_Detail_Detail.FieldByName('cPosCode').AsString.Trim, FPosition) then
+              begin
+                fdm_Detail_Detail.Edit;
+                if fdm_Detail_Detail.FieldByName('iQuantity').AsFloat - fdm_Detail_Detail.FieldByName('iQuantity_Amt').AsFloat
+                  >= QRQty_Sub_Detail_Amt then
+                  MinQty := QRQty_Sub_Detail_Amt
+                else
+                  MinQty := QRQty_Sub_Detail_Amt;
+                fdm_Detail_Detail.FieldByName('iQuantity_Amt').AsFloat := fdm_Detail_Detail.FieldByName('iQuantity_Amt').AsFloat
+                  + MinQty;
+                fdm_Detail_Detail.Post;
+=======
+          //if SameText(fdm_SubDetail.FieldByName('cInvCode').AsString.Trim, fdm_Main.FieldByName('cInvCode').AsString) then
+            //if SameText(fdm_SubDetail.FieldByName('cBatch').AsString.Trim, GetValueByKey(FQRCode, 'cBatch')) then
+              //if SameText(fdm_SubDetail.FieldByName('cPosCode').AsString.Trim, FPosition) then
+             // begin
+                fdm_SubDetail.Edit;    //±à¼­fdm_SubDetail
+                if fdm_SubDetail.FieldByName('iQuantity').AsFloat - fdm_SubDetail.FieldByName('iQuantity_Amt').AsFloat = 0 then
+                  begin                      //ÒÑ³öÊıÁ¿ÂúÁË ¾Í±éÀúÏÂÒ»Ìõ¼ÇÂ¼
+                   fdm_SubDetail.Next;
+                   continue;
+                  end;
+
+                if fdm_SubDetail.FieldByName('iQuantity').AsFloat - fdm_SubDetail.FieldByName('iQuantity_Amt').AsFloat >= QRQty_Sub_Detail_Amt then
+                  MinQty := QRQty_Sub_Detail_Amt   //ÊıÁ¿-ÒÑ³öÊıÁ¿´óÓÚµÈÓÚÌõÂëÊıÁ¿£¬Ôò½«ÌõÂëÊıÁ¿¸³Öµ¸øMinQty
+                 else                              //Èç¹ûĞ¡ÓÚ½«×ÜÊıÁ¿ºÍÒÑ³öÊıÁ¿µÄ²îÖµ¸³Öµ¸øMinQty
+                 begin
+                  MinQty := fdm_SubDetail.FieldByName('iQuantity').AsFloat - fdm_SubDetail.FieldByName('iQuantity_Amt').AsFloat;
+                 end;
+                  //MinQty := QRQty_Sub_Detail_Amt;  //
+
+                fdm_SubDetail.FieldByName('iQuantity_Amt').Value := fdm_SubDetail.FieldByName('iQuantity_Amt').AsFloat + MinQty; //ÀÛ¼Æµ½ÒÑ³öÊıÁ¿
+                fdm_SubDetail.Post;        //Ìá½»¸ü¸Äµ½ÄÚ´æ±í
+
+                QRQty_Sub_Detail_Amt := QRQty_Sub_Detail_Amt - MinQty;              //±éÀúÄÚ´æ±í ¸ù¾İ»õÎ»ÅúºÅÊıÁ¿  µİ¼õÉ¨ÈëÌõÂëµÄÊıÁ¿
+                SubQty := fdm_Sub.FieldByName(VouObj.SrcQtyField).AsFloat;
+                SubQtyRmt := fdm_Sub.FieldByName(VouObj.SrcRmtQtyField).AsFloat;
+                SubQtyAmt := SubQty - SubQtyRmt;
+                if QRQty <= SubQtyAmt then
+                begin
+                  fdm_Detail.Append;
+                  fdm_Detail.FieldByName(VouObj.DesSubLinkSrcFeild).AsString := fdm_Sub.FieldByName(VouObj.SrcLinkDesSubField).AsString;
+                  fdm_Detail.FieldByName('cDefine33').Value := GetValueByKey(FQRCode, 'SN');
+
+                  if GetValueByKey(FQRCode, 'iQuantity') = '' then
+                    fdm_Detail.FieldByName('iQuantity').Value := 0
+                  else
+                    fdm_Detail.FieldByName('iQuantity').Value := MinQty;
+
+                  fdm_Detail.FieldByName('cBatch').Value := fdm_SubDetail.FieldByName('cBatch').AsString;
+                  fdm_Detail.FieldByName('cPosition').Value := fdm_SubDetail.FieldByName('cPosCode').AsString;
+                  fdm_Detail.FieldByName('cInvCode').Value := strDesInvCode;
+                  fdm_Detail.FieldByName('cmocode').Value := fdm_Sub.FieldByName('MoCode').Value;
+                  fdm_Detail.FieldByName('imoseq').Value := fdm_Sub.FieldByName('SortSeq').Value;
+
+                  fdm_Detail.FieldByName('iUnitCost').Value := 0; // XML²»ÄÜÎª¿Õ
+                  fdm_Detail.FieldByName('iPrice').Value := 0; // XML²»ÄÜÎª¿Õ      //   beforepost ÊıÖµÕıÈ·
+
+                  fdm_Detail.Post;      // FDM_DETAIL   AFTERPOST ÊÂ¼şÖĞÓĞ¸ö refreshdata
+                         //   afterpost ÊıÖµÕıÈ·      --È¥µôÁË refreshdata
+
+                end
+                else
+                begin
+                  showmessage(format('ÎïÁÏ%sÊıÁ¿%g³¬¹ı¿ÉÁìÊıÁ¿(%g-%g=%g)¡£', [strDesInvCode, strtofloat(GetValueByKey(FQRCode, 'iQuantity')), SubQty, SubQtyRmt,
+                    SubQtyAmt]));
+                  Abort;
+                end;
+>>>>>>> 99732c82297289bc607e132627a6db6fdd34b504
+
+              if QRQty_Sub_Detail_Amt > 0 then      //ÌõÂëÊıÁ¿ÅĞ¶Ï£¬Ìø³ö±éÀúÄÚ´æ±í
+                fdm_SubDetail.Next
+              else
+                break;
+
+<<<<<<< HEAD
+              end;
+          fdm_Detail_Detail.Next;
+=======
+>>>>>>> 99732c82297289bc607e132627a6db6fdd34b504
+        end;
+        if QRQty_Sub_Detail_Amt > 0 then       //±éÀúÍêfdm_SubDetail,Èç¹û ÌõÂëÊıÁ¿»¹ÊÇ´óÓÚÁã
+        begin
+<<<<<<< HEAD
+          showmessage('å½“å‰å­˜è´§æ•°é‡ä¸è¶³ã€‚');
+          fdm_Detail_Detail.EmptyDataSet;
+          fdm_Detail_Detail.AppendData(fdm_SubDetail_Copy.Data);
+
+          Abort;
+=======
+          showmessage('µ±Ç°´æ»õÊıÁ¿²»×ã¡£');
+          fdm_SubDetail.EmptyDataSet;
+          fdm_SubDetail.AppendData(fdm_SubDetail_Copy.Data);
+        Abort;
+>>>>>>> 99732c82297289bc607e132627a6db6fdd34b504
+        end;
+        freeandnil(fdm_SubDetail_Copy); //ÊÍ·Å
+      end;
+<<<<<<< HEAD
+      SubQty := Ref.FieldByName(VouObj.SrcQtyField).AsFloat;
+      SubQtyRmt := Ref.FieldByName(VouObj.SrcRmtQtyField).AsFloat;
+      SubQtyAmt := SubQty - SubQtyRmt;
+      if QRQty <= SubQtyAmt then
+      begin
+        Detail.Append;
+        Detail.FieldByName(VouObj.DesSubLinkSrcFeild).AsString := Ref.FieldByName(VouObj.SrcLinkDesSubField).AsString;
+        Detail.FieldByName('cDefine33').Value := GetValueByKey(FQRCode, 'SN');
+        if GetValueByKey(FQRCode, 'iQuantity') = '' then
+          Detail.FieldByName('iQuantity').Value := 0
+        else
+          Detail.FieldByName('iQuantity').Value := strtofloat(GetValueByKey(FQRCode, 'iQuantity'));
+
+        Detail.FieldByName('cInvCode').Value := strDesInvCode;
+        Detail.FieldByName('cBatch').Value := GetValueByKey(FQRCode, 'cBatch');
+        if GetValueByKey(FQRCode, 'cPosition') = '' then
+          Detail.FieldByName('cPosition').Value := Position
+        else
+          Detail.FieldByName('cPosition').Value := GetValueByKey(FQRCode, 'cPosition');
+
+        Detail.FieldByName('cmocode').Value := Ref.FieldByName('MoCode').Value;
+        Detail.FieldByName('imoseq').Value := Ref.FieldByName('SortSeq').Value;
+
+        Detail.FieldByName('iUnitCost').Value := 0; // XMLä¸èƒ½ä¸ºç©º
+        Detail.FieldByName('iPrice').Value := 0; // XMLä¸èƒ½ä¸ºç©º
+
+        Detail.Post;
+      end
+      else
+      begin
+        showmessage(format('ç‰©æ–™%sæ•°é‡%gè¶…è¿‡å¯é¢†æ•°é‡(%g-%g=%g)ã€‚', [strDesInvCode, strtofloat(GetValueByKey(FQRCode, 'iQuantity')),
+          SubQty, SubQtyRmt, SubQtyAmt]));
+        Abort;
+      end
+    end
+    else // ä¸åœ¨å‚ç…§è¡¨çš„å­˜è´§èŒƒå›´ï¼›
+=======
+
+    end
+   else // ²»ÔÚ²ÎÕÕ±íµÄ´æ»õ·¶Î§£»
+>>>>>>> 99732c82297289bc607e132627a6db6fdd34b504
+    begin
+      showmessage(format('ç‰©æ–™%sä¸åœ¨æ¥æºå•æ®èŒƒå›´ã€‚', [strDesInvCode]));
+      Abort;
+    end;
+
+    edt_QRCode.Text := '';
+  end;
+end;
+
+procedure Tfrm_RdVouch11.edt_QRCodeKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char; Shift: TShiftState);
+begin
+  inherited;
+  if Key = 13 then
+  try
+    SZHL_ComboBoxSyncToDB(lyt_Main, Main);
+    DecryptQRCode;
+    edt_QRCode.SetFocus;
+  finally
+    DM_Global.FormatGrid_byAD(FVouchObj.DesSubTableDef, '', Detail, LinkGridToData_Detail);
+  end;
+end;
+
+procedure Tfrm_RdVouch11.fdmtbl_DetailAfterOpen(DataSet: TDataSet);
+begin
+  inherited;
+  DM_Global.FormatGrid_byAD(FVouchObj.DesSubTableDef, '', Detail, LinkGridToData_Detail);
+end;
+
+procedure Tfrm_RdVouch11.fdmtbl_DetailAfterPost(DataSet: TDataSet);
+begin
+  inherited;
+<<<<<<< HEAD
+  RefreshData;
+  DM_Global.FormatGrid_byAD(FVouchObj.DesSubTableDef, '', Detail, LinkGridToData_Detail);
+=======
+  //RefreshData;
+  DM_Global.FormatGrid_byAD(FVouchObj.DesSubTableDef, '', fdm_Detail, LinkGridToData_Detail);
+>>>>>>> 99732c82297289bc607e132627a6db6fdd34b504
+end;
+
+procedure Tfrm_RdVouch11.fdmtbl_DetailBeforePost(DataSet: TDataSet);
+var
+  strErrMsg: string;
+begin
+  inherited;
+  strErrMsg := DM_Global.CheckAllowEmptys(DataSet, VouObj.DesSubTableDef);
+  if strErrMsg <> '' then
+  begin
+    showmessage(strErrMsg);
+    Abort;
+  end;
+  if cWhCode <> '' then
+  begin
+    // showmessage('è¯·é€‰æ‹©ä»“åº“');
+    if DM_Global.CheckWareHousePos(cWhCode) = true then
+    begin
+      if DataSet.FieldByName('cposition').AsString = '' then
+      begin
+        showmessage('å½“å‰ä»“åº“æœ‰è´§ä½ç®¡ç†ï¼Œè¯·æŒ‡å®šè´§ä½ã€‚');
+        // exit;
+      end;
+    end;
+  end;
+  if DM_Global.CheckInvBatch(DataSet.FieldByName('cInvCode').AsString) = true then
+  begin
+    if DataSet.FieldByName('cBatch').AsString = '' then
+    begin
+      showmessage('å½“å‰å­˜è´§æœ‰æ‰¹æ¬¡ç®¡ç†ï¼Œè¯·æŒ‡å®šæ‰¹æ¬¡ã€‚');
+      // exit;
+    end;
+  end
+  else
+    DataSet.FieldByName('cBatch').Value := ''; // æ— æ‰¹æ¬¡ç®¡ç†æ¸…é™¤æ‰¹æ¬¡ã€‚
+end;
+
+procedure Tfrm_RdVouch11.fdmtbl_MainAfterInsert(DataSet: TDataSet);
+begin
+  inherited;
+  DataSet.FieldByName('dDate').Value := Now;
+  DataSet.FieldByName('cMaker').Value := PubVar_LoginInfo.UserName;
+end;
+
+procedure Tfrm_RdVouch11.fdmtbl_MainAfterOpen(DataSet: TDataSet);
+var
+  strVouchsSql, strVouchsSql_sub: string;
+begin
+  inherited;
+
+  // å­è¡¨ï¼ˆæ¥æºå±•å¼€ï¼‰è¡¨ ,åˆæ¬¡éšè¡¨å¤´æ‰“å¼€ï¼Œç”¨æ¥å¤„ç†æ‰“å¼€å·²ç»æœ‰çš„å•æ®ã€‚
+  LinkGridToData_Sub.Columns.Clear;
+<<<<<<< HEAD
+  strVouchsSql_sub := format('select %s from %s where %s =''%s''', [FVouchObj.DesSubLinkSrcFeild, FVouchObj.DesSubTable,
+    FVouchObj.DesMainKeyField, FVouchObj.DesMainKey]);
+  strVouchsSql := format('select *,0.00 %s from %s where %s in (%s)', [FVouchObj.SrcQty_AmtField, FVouchObj.SrcTable,
+    FVouchObj.SrcLinkDesSubField, strVouchsSql_sub]);
+  DM_Global.ExecSql(Ref, strVouchsSql);
+=======
+  strVouchsSql_sub := format('select %s from %s where %s =''%s''', [FVouchObj.DesSubLinkSrcFeild, FVouchObj.DesSubTable, FVouchObj.DesMainKeyField,FVouchObj.DesMainKey]);
+  strVouchsSql := format('select *,0.00 %s from %s where %s in (%s)', [FVouchObj.SrcQty_AmtField, FVouchObj.SrcTable, FVouchObj.SrcLinkDesSubField,strVouchsSql_sub]);
+  DM_Global.ExecSql(fdm_Sub, strVouchsSql);
+>>>>>>> 99732c82297289bc607e132627a6db6fdd34b504
+
+  // æ˜ç»†è¡¨
+  LinkGridToData_Detail.Columns.Clear;
+  strVouchsSql := format('select * from %s where %s=''%s''', [FVouchObj.DesSubTable, FVouchObj.DesMainKeyField,
+    FVouchObj.DesMainKey]);
+  DM_Global.ExecSql(Detail, strVouchsSql);
+
+end;
+
+procedure Tfrm_RdVouch11.fdmtbl_MainBeforePost(DataSet: TDataSet); // ä¿å­˜å‰æ£€æŸ¥ä¸»è¡¨å¿…è¾“å…¥é¡¹
+var
+  strErrMsg: string;
+begin
+  inherited;
+  SZHL_ComboBoxSyncToDB(lyt_Main, Main);
+  strErrMsg := DM_Global.CheckAllowEmptys(DataSet, VouObj.DesMainTableDef);
+  if strErrMsg <> '' then
+  begin
+    showmessage(strErrMsg);
+    Abort;
+  end;
+
+end;
+
+procedure Tfrm_RdVouch11.fdmtbl_RefAfterOpen(DataSet: TDataSet);
+begin
+  inherited;
+  DM_Global.FormatGrid_byAD(FVouchObj.SrcTableDef, '', Ref, LinkGridToData_Sub, true);
+  ShowSubDetail
+end;
+
+<<<<<<< HEAD
+procedure Tfrm_RdVouch11.fdmtbl_RefAfterScroll(DataSet: TDataSet);
+begin
+  inherited;
+  ShowSubDetail;
+end;
+=======
+//procedure Tfrm_RdVouch11.fdm_SubAfterScroll(DataSet: TDataSet);     //Êı¾İ¿âÖØĞÂÀÌÊı¾İ
+//begin
+  //inherited;
+//  ShowSubDetail;
+//end;
+>>>>>>> 99732c82297289bc607e132627a6db6fdd34b504
+
+procedure Tfrm_RdVouch11.fdmtbl_Detail_subAfterOpen(DataSet: TDataSet);
+begin
+  inherited;
+  DM_Global.FormatGrid_byAD('ææ–™å‡ºåº“å•å‚ç…§ç”Ÿäº§è®¢å•ç”¨æ–™è¡¨æ˜ç»†è§†å›¾', '', fdm_Detail_Detail, LinkGridToData_SubDetail, true);
+end;
+
+procedure Tfrm_RdVouch11.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  frm_RdVouch11 := nil;
+end;
+
+procedure Tfrm_RdVouch11.FormCreate(Sender: TObject);
+begin
+  inherited;
+<<<<<<< HEAD
+
+  FRdFlag := true; // é»˜è®¤æ­£æ•°(å…°å­—)å•æ®
+  ClearChildCtrl(lyt_Main, False); // éšè—åŸæ§ä»¶
+  TabControl1.ActiveTab := TabControl1.Tabs[0]; // é»˜è®¤é¡µç­¾
+=======
+  FRdFlag := true; // Ä¬ÈÏÕıÊı(À¼×Ö)µ¥¾İ       //À¶×ÖÅĞ¶Ï  ÔÛ²»ĞŞ¸Ä
+  ClearChildCtrl(lyt_Main, False); // Òş²ØÔ­¿Ø¼ş
+  TabControl1.ActiveTab := TabControl1.Tabs[0]; // Ä¬ÈÏÒ³Ç©
+>>>>>>> 99732c82297289bc607e132627a6db6fdd34b504
+end;
+
+procedure Tfrm_RdVouch11.FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char; Shift: TShiftState);
+begin
+  inherited;
+  if Key = vkF11 then
+    edt_QRCode.Text :=
+      'C=A;SN=10978;cPOID=0000000001;cCode=PR18020001;cInvCode=01-113-4003LR;Autoid=1000000001;cBatch=batch1;iQty=2';
+end;
+
+procedure Tfrm_RdVouch11.FormShow(Sender: TObject);
+begin
+  inherited;
+  txt_BaseTitle.Text := VouObj.DesMainTableDef;
+
+<<<<<<< HEAD
+  t1.Visible := False;
+{$IFDEF DEBUG}
+  Position := '18042';
+  t1.Visible := true;
+{$ENDIF}
+=======
+  TabItem1.Visible := False;
+//{$IFDEF DEBUG}
+//  Position := '18042';
+//  TabItem1.Visible := true;
+//{$ENDIF}
+>>>>>>> 99732c82297289bc607e132627a6db6fdd34b504
+  if FVouchObj.DesMainKey.Trim <> '' then
+  begin
+    btn_Save.Visible := False;
+    btn_ClearDetail.Visible := False;
+    BillCodeLay.Visible := False;
+    // fdm_Main.Append;
+    // if fdm_Sub.Active = True then
+    // fdm_Sub.EmptyDataSet;
+    // fdm_Detail.EmptyDataSet;
+  end;
+  self.edt_QRCode.SetFocus;
+end;
+
+procedure Tfrm_RdVouch11.RefreshData; // æ ¹æ®Detailæ±‡æ€»åˆ°Sub
+var
+  strVouchsSql: string;
+  bkTmp: TBookmark;
+begin
+  inherited;
+  if Detail.Eof then
+    exit;
+
+  // å­è¡¨ï¼ˆæ¥æºå±•å¼€ï¼‰è¡¨ ,åˆæ¬¡éšè¡¨å¤´æ‰“å¼€ï¼Œç”¨æ¥å¤„ç†æ‰“å¼€å·²ç»æœ‰çš„å•æ®ã€‚
+  bkTmp := Detail.Bookmark;
+  Detail.DisableControls;
+  // fdm_Sub.EmptyDataSet;
+<<<<<<< HEAD
+  Detail.First;
+  while not Detail.Eof do
+  begin
+=======
+  fdm_Detail.last;
+  //while not fdm_Detail.Eof do
+  //begin
+>>>>>>> 99732c82297289bc607e132627a6db6fdd34b504
+    // if fdm_Sub.Locate(VouObj.SrcLinkDesSubField, VarArrayOf([Trim(fdm_Detail.FieldByName(VouObj.DesSubLinkSrcFeild).AsString)])) = False then
+    // begin
+    // try
+    // fdm_Sub.AppendData(fdm_sub_append);
+    // finally
+    // fdm_sub_append.EmptyDataSet;
+    // end;
+    // end;
+    if Ref.Locate('cInvCode', VarArrayOf([Detail.FieldByName('cInvCode').AsString.Trim])) = true then
+    begin
+
+      Ref.Edit;
+      Ref.FieldByName(VouObj.SrcRmtQtyField).Value := Ref.FieldByName(VouObj.SrcRmtQtyField).AsFloat +
+        Detail.FieldByName(VouObj.DesSubQtyField).AsFloat;
+      Ref.FieldByName(VouObj.SrcQty_AmtField).Value := Ref.FieldByName(VouObj.SrcQty_AmtField).AsFloat -
+        Detail.FieldByName(VouObj.DesSubQtyField).AsFloat;
+      Ref.Post;
+      Append1.EmptyDataSet;
+    end;
+<<<<<<< HEAD
+    Detail.Next;
+  end;
+  Detail.EnableControls;
+  DM_Global.FormatGrid_byAD(FVouchObj.SrcTableDef, '', Ref, LinkGridToData_Sub, true);
+  DM_Global.FormatGrid_byAD(FVouchObj.DesSubTableDef, '', Detail, LinkGridToData_Detail);
+=======
+    //fdm_Detail.Next;
+  //end;
+  fdm_Detail.EnableControls;
+  DM_Global.FormatGrid_byAD(FVouchObj.SrcTableDef, '', fdm_Sub, LinkGridToData_Sub, true);
+  DM_Global.FormatGrid_byAD(FVouchObj.DesSubTableDef, '', fdm_Detail, LinkGridToData_Detail);
+>>>>>>> 99732c82297289bc607e132627a6db6fdd34b504
+end;
+
+procedure Tfrm_RdVouch11.setDefaulPosition(Value: string);
+begin
+  FPosition := Value;
+  txt_BaseTitle.Text := format('%s  P:%s', [VouObj.DesMainTableDef, Value])
+end;
+
+procedure Tfrm_RdVouch11.ShowSubDetail;       //ÏÔÊ¾subdetailÊı¾İ
+var
+  strVouchSql, strWhCode, strcInvCode: string;
+begin
+  strWhCode := Main.FieldByName('cWhCode').AsString.Trim;
+  if strWhCode.IsEmpty = true then
+  begin
+    exit;
+    showmessage('è¯·é€‰æ‹©ä»“åº“åé‡è¯•');
+  end;
+  strcInvCode := Ref.FieldByName('cInvCode').AsString.Trim;
+  strVouchSql := format('Exec SZHL_GetStock ''%s'',''%s''', [strWhCode, strcInvCode]);
+  DM_Global.ExecSql(fdm_Detail_Detail, strVouchSql);
+end;
+
+procedure Tfrm_RdVouch11.strngrd_DetailCellDblClick(const Column: TColumn; const Row: Integer);
+begin
+  inherited;
+  exit;
+  if edt_QRCode.Text.IsEmpty then
+  begin
+    edt_QRCode.Text := format('C=S;mocode=%s', [Ref.FieldByName('mocode').AsString]);
+    try
+      SZHL_ComboBoxSyncToDB(lyt_Main, Main);
+      DecryptQRCode;
+      edt_QRCode.SetFocus;
+    finally
+      DM_Global.FormatGrid_byAD(FVouchObj.DesSubTableDef, '', Detail, LinkGridToData_Detail);
+    end;
+
+  end;
+end;
+
+<<<<<<< HEAD
+procedure Tfrm_RdVouch11.strngrd_Detail_SubCellDblClick(const Column: TColumn; const Row: Integer);
+=======
+procedure Tfrm_RdVouch11.StringGrid_SubCellDblClick(const Column: TColumn;            //Ë«»÷Ë¢ĞÂfdm_detailÊı¾İ
+  const Row: Integer);
+begin
+  inherited;
+  ShowSubDetail;
+end;
+
+procedure Tfrm_RdVouch11.StringGrid_SubDetailCellDblClick(const Column: TColumn; const Row: Integer);
+>>>>>>> 99732c82297289bc607e132627a6db6fdd34b504
+var
+  strPosition: string;
+begin
+  inherited;
+  strPosition := fdm_Detail_Detail.FieldByName('cPosCode').AsString.Trim;
+  if not strPosition.IsEmpty then
+    Position := strPosition;
+end;
+
+function Tfrm_RdVouch11.GetcWhCode: string;
+begin
+  Result := '';
+  if (not Main.Eof) or (Main.State in [dsEdit, dsInsert]) then
+    Result := Main.FieldByName('cWhCode').AsString.Trim;
+end;
+
+function Tfrm_RdVouch11.GetPostXML(): string;
+var
+  FXmlDoc: TXMLDocument;
+  LoopInt, tmpInt: Integer;
+  ndVouchHead, tmpListRootNode: IXMLNode;
+  ndVouchBody, ndProduct: IXMLNode;
+  bkm_Detail: TBookmark;
+
+  procedure WriteChildNodeByDataSet(XMLDoc: TXMLDocument; nsParent: IXMLNode; dstSource: TDataSet; strNodeName,
+    strFieldName: string);
+  var
+    ndTmp: IXMLNode;
+    fdTmp: TField;
+  begin
+    strFieldName := Trim(strFieldName);
+    fdTmp := dstSource.Fields.FindField(strFieldName);
+
+    if fdTmp = nil then
+    begin
+      showmessage(format('%sè¡¨ç”Ÿæˆæäº¤soapæ‰€éœ€è¦çš„XMLæ—¶é”™è¯¯ï¼Œæœªå‘ç°å­—æ®µ%s', [VouObj.DesMainTable, strFieldName]));
+      Abort;
+    end;
+    // if dstSource.FieldByName(strFieldName).AsString = '' then
+    // begin
+    // showmessage(format('%sè¡¨æäº¤soapç”ŸæˆXMLæ—¶é”™è¯¯ï¼Œå­—æ®µ%så†…å®¹ä¸ºç©º', [VouObj.MainTable, strFieldName]));
+    // Abort;
+    // end;
+    ndTmp := XMLDoc.CreateNode(strNodeName);
+    nsParent.ChildNodes.Add(ndTmp);
+    ndTmp.Text := dstSource.FieldByName(strFieldName).AsString;
+  end;
+
+begin
+  try
+
+    FXmlDoc := TXMLDocument.Create(self);
+    FXmlDoc.Active := true;
+    FXmlDoc.Version := '1.0';
+    FXmlDoc.Encoding := 'UTF-8';
+    // åŠ å…¥ç‰ˆæœ¬ä¿¡æ¯ â€˜<?xml version="1.0" encoding="GB2312" ?> â€™
+
+    // è¡¨å¤´
+    ndVouchHead := FXmlDoc.CreateNode('XMaterialOutInfo'); // ä¸»å•æ ¹ç»“ç‚¹
+    FXmlDoc.DocumentElement := ndVouchHead;
+
+    WriteChildNodeByDataSet(FXmlDoc, ndVouchHead, Main, 'cCode', 'cCode');
+    WriteChildNodeByDataSet(FXmlDoc, ndVouchHead, Main, 'dDate', 'dDate');
+    WriteChildNodeByDataSet(FXmlDoc, ndVouchHead, Main, 'cWhCode', 'cWhCode');
+
+    WriteChildNodeByDataSet(FXmlDoc, ndVouchHead, Main, 'cMemo', 'cMemo');
+    WriteChildNodeByDataSet(FXmlDoc, ndVouchHead, Main, 'cDepCode', 'cDepCode');
+    WriteChildNodeByDataSet(FXmlDoc, ndVouchHead, Main, 'cMaker', 'cMaker');
+    WriteChildNodeByDataSet(FXmlDoc, ndVouchHead, Main, 'cRdCode', 'cRdCode');
+    WriteChildNodeByDataSet(FXmlDoc, ndVouchHead, Main, 'cMpoCode', 'cMpoCode');
+
+    // è¡¨ä½“
+    ndVouchBody := FXmlDoc.CreateNode('XMaterialOutsInfos'); // å­è¡¨æ ¹ç»“ç‚¹
+    ndVouchHead.ChildNodes.Add(ndVouchBody);
+
+    bkm_Detail := Detail.GetBookmark;
+    Detail.DisableControls;
+    Detail.First;
+    while not Detail.Eof do
+    begin
+      // è¡¨ä½“
+      ndProduct := FXmlDoc.CreateNode('XMaterialOutsInfo'); // å­è¡¨æ ¹ç»“ç‚¹
+      ndVouchBody.ChildNodes.Add(ndProduct);
+      WriteChildNodeByDataSet(FXmlDoc, ndProduct, Detail, 'cInvCode', 'cInvCode');
+
+      WriteChildNodeByDataSet(FXmlDoc, ndProduct, Detail, 'cBatch', 'cBatch');
+      WriteChildNodeByDataSet(FXmlDoc, ndProduct, Detail, 'iMPoIds', 'iMPoIds');
+      WriteChildNodeByDataSet(FXmlDoc, ndProduct, Detail, 'cMoCode', 'cMoCode');
+      WriteChildNodeByDataSet(FXmlDoc, ndProduct, Detail, 'iMoSeq', 'iMoSeq');
+      WriteChildNodeByDataSet(FXmlDoc, ndProduct, Detail, 'iQuantity', 'iQuantity');
+      WriteChildNodeByDataSet(FXmlDoc, ndProduct, Detail, 'iUnitCost', 'iUnitCost');
+      WriteChildNodeByDataSet(FXmlDoc, ndProduct, Detail, 'iPrice', 'iPrice');
+      WriteChildNodeByDataSet(FXmlDoc, ndProduct, Detail, 'cposition', 'cPosition');
+      Detail.Next;
+    end;
+    Detail.Bookmark := bkm_Detail;
+    Detail.EnableControls;
+    Result := FXmlDoc.Xml.Text;
+  finally
+    FXmlDoc.Active := False;
+    FXmlDoc.Free;
+  end;
+end;
+
+procedure Tfrm_RdVouch11.InitData;
+var
+  strVouchSql: string;
+begin
+  inherited;
+
+  // æ‰“å¼€ä¸»è¡¨
+  strVouchSql := format('select * from %s where %s=''%s''', [FVouchObj.DesMainTable, FVouchObj.DesMainKeyField,
+    FVouchObj.DesMainKey]);
+  DM_Global.ExecSql(Main, strVouchSql);
+  if Main.Eof then
+    Main.Append;
+
+  CreateADCtrl(FVouchObj.DesMainTableDef, lyt_Main, Main, BindSourceDB_Main);
+  SZHL_ComboBoxSyncToControl(lyt_Main, Main);
+
+  CreateADCtrl(FVouchObj.DesSubCardTable, LayDetailCard, Detail, Detail);
+  SyncMemTableToLookupControl(LayDetailCard, Detail);
+end;
+
+end.
+

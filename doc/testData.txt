@@ -1,0 +1,50 @@
+根据采购到货单生成采购入库单单
+#正常
+C=S;id=1000000001;cpoid=0000000001
+C=A;SN=1;cInvCode=01-113-4003LR;cBatch=b2;iQuantity=0.15
+
+
+
+根据生产订单生成材料出库单
+C=S;MoDid=1000000003
+C=A;SN=1;cInvCode=01-113-4003LR;cBatch=b2;iQuantity=0.15
+#不能带入货位(仓库有货位管理)，20180226更新后成功
+
+<?xml version="1.0"?>
+<XMaterialOutInfo><cCode></cCode><dDate>2018/2/25 16:46:12</dDate><cWhCode>1</cWhCode><cMemo></cMemo><cDepCode>D01100</cDepCode><cMaker>demo用户名</cMaker><cRdCode>05</cRdCode><cMpoCode>MO20180002</cMpoCode><XMaterialOutsInfos><XMaterialOutsInfo><cInvCode>01-113-4003LR</cInvCode><cBatch>b2</cBatch><iMPoIds>1000000017</iMPoIds><cMoCode>MO20180002</cMoCode><iMoSeq>1</iMoSeq><iQuantity>0.15</iQuantity><iUnitCost>0</iUnitCost><iPrice>0</iPrice><cPosition>18042</cPosition></XMaterialOutsInfo></XMaterialOutsInfos></XMaterialOutInfo>
+
+
+
+
+根据生产订单生成产成品入库单
+C=S;MoCode=MO20180002
+C=A;SN=1;cInvCode=113-4003L-A;cBatch=0000000001;iQuantity=13
+#不能带入货位(仓库有货位管理)，不能与生产订单关联;20180226更新后成功
+<?xml version="1.0"?>
+<XProductInInfo><cCode></cCode><dDate>2018/2/25 16:48:26</dDate><cWhCode>1</cWhCode><cMemo>AAAA</cMemo><cDepCode>D01100</cDepCode><cMaker>demo用户名</cMaker><cRdCode>02</cRdCode><cMPoCode>MO20180002</cMPoCode><XProductInsInfos><XProductInsInfo><cInvCode>113-4003L-A</cInvCode><cBatch></cBatch><iMPoIds>1000000003</iMPoIds><cmocode>MO20180002</cmocode><imoseq>1</imoseq><iQuantity>13</iQuantity><iUnitCost>0</iUnitCost><iPrice>0</iPrice><cPosition>18042</cPosition></XProductInsInfo></XProductInsInfos></XProductInInfo>
+
+
+
+根据销售发货生成销售出库单
+C=S;DLID=1000000002
+C=A;SN=1;cInvCode=113-4003L-A;cBatch=0000000001;iQuantity=5
+#不更新出现block错误，更新后login不能登陆;20180226更新后成功
+<?xml version="1.0"?>
+<XSaleOutInfo><cCusCode>E3002</cCusCode><dDate>2018/2/25 16:08:09</dDate><cWhCode>1</cWhCode><cDepCode>M11</cDepCode><cMemo></cMemo><XSaleOutsInfos><XSaleOutsInfo><cInvCode>113-4003L-A</cInvCode><iQuantity>5</iQuantity><cBatch></cBatch><cPosition>18042</cPosition><iDLsID>1000000002</iDLsID></XSaleOutsInfo></XSaleOutsInfos></XSaleOutInfo>
+
+
+根据委外订单生成委外入库单
+C=S;cCode=WWPO18020002
+C=A;SN=21;cInvCode=113-4003L-A;cBatch=W0001;iQuantity=0.01
+#单据保存失败：该操作会造成到货和入库同时存在，请重新检查操作,20180226更新后成功
+<?xml version="1.0"?>
+<XPurchaseInInfo><cCode></cCode><dDate>2018/2/25 17:08:12</dDate><cWhCode>1</cWhCode><cVenCode>25052</cVenCode><cMemo></cMemo><cMaker>demo用户名</cMaker><cOrderCode>WWPO18020002</cOrderCode><ipurorderid>1000000002</ipurorderid><cRdCode>03</cRdCode><XPurchaseInsInfos><XProductInsInfo><cInvCode>113-4003L-A</cInvCode><cBatch></cBatch><iQuantity>0.01</iQuantity><iUnitCost>0</iUnitCost><iPrice>0</iPrice><cPoId>WWPO18020002</cPoId><iOMoDID>1000000002</iOMoDID><cPosition>18042</cPosition></XProductInsInfo></XPurchaseInsInfos></XPurchaseInInfo>
+
+
+根据委外订单生成材料出库单
+C=S;MODetailsID=1000000001
+C=A;SN=1;cInvCode=01-113-4003LR;cBatch=b1;iQuantity=2
+#不能带入货位(仓库有货位管理)，20180226更新后成功
+<?xml version="1.0"?>
+<XMaterialOutInfo><cCode></cCode><dDate>2018/2/25 16:53:22</dDate><cWhCode>1</cWhCode><cMemo>3332</cMemo><cDepCode>C01</cDepCode><cMaker>demo用户名</cMaker><cVenCode>25052</cVenCode><cMPoCode>WWPO18020001</cMPoCode><cPsPcode>113-4003L-A</cPsPcode><ipurorderid>1000000001</ipurorderid><cRdCode>10</cRdCode><XMaterialOutsInfos><XMaterialOutsInfo><cInvCode>01-113-4003LR</cInvCode><cBatch>b1</cBatch><iOMoDID>1000000001</iOMoDID><iOMomID>1000000001</iOMomID><comcode>WWPO18020001</comcode><invcode>113-4003L-A</invcode><ipesodid></ipesodid><cpesocode></cpesocode><iQuantity>0.2</iQuantity><cPosition>18042</cPosition></XMaterialOutsInfo></XMaterialOutsInfos></XMaterialOutInfo>
+
