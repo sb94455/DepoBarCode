@@ -446,6 +446,17 @@ begin
   // Ã÷Ï¸±í
   LinkGridToData_Detail.Columns.Clear;
   strVouchsSql := format('select * from %s where %s=''%s''', [FVouchObj.DesSubTable, FVouchObj.DesMainKeyField, FVouchObj.DesMainKey]);
+
+  fdm_Detail.FieldDefs.Clear;
+  fdm_Detail.FieldDefs.Add('autoid', ftInteger, 0, true);
+  fdm_Detail.FieldDefs.Add('id', ftInteger, 0, true);
+  fdm_Detail.FieldDefs.Add('iquantity', ftFloat, 0, False);
+  fdm_Detail.FieldDefs.Add('cbatch', ftString, 20, False);
+  fdm_Detail.FieldDefs.Add('cposition', ftString, 50, False);
+//  fdm_Detail.FieldDefs.Add('iarrsid', ftInteger, 0, False);
+  fdm_Detail.FieldDefs.Add('cDefine33', ftString, 50, False);
+//                              fdm_Detail.FieldDefs.Add('iarrsid',ftInteger,0,true);
+  fdm_Detail.CreateDataSet;
   DM_Global.ExecSql(fdm_Detail, strVouchsSql);
 
 end;

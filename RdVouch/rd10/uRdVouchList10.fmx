@@ -64,10 +64,11 @@ inherited frm_RdVouchList10: Tfrm_RdVouchList10
         TextSettings.Font.Size = 10.000000000000000000
         StyledSettings = [Family, Style, FontColor]
         TabOrder = 0
+        RowHeight = 40.000000000000000000
         RowCount = 0
         Options = [ColumnResize, ColumnMove, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
-        Viewport.Width = 446.000000000000000000
-        Viewport.Height = 427.000000000000000000
+        Viewport.Width = 450.000000000000000000
+        Viewport.Height = 452.000000000000000000
       end
       object lyt_Main: TLayout
         Align = Top
@@ -96,7 +97,7 @@ inherited frm_RdVouchList10: Tfrm_RdVouchList10
         end
         object ClearBtn: TButton
           Align = FitLeft
-          Size.Width = 69.666656494140620000
+          Size.Width = 69.666656494140630000
           Size.Height = 33.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 0

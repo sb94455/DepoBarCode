@@ -63,7 +63,7 @@ inherited frm_RdVouch10: Tfrm_RdVouch10
           Size.PlatformDefault = False
           StyleLookup = 'tabcontrolstyle'
           TabHeight = 49.000000000000000000
-          TabIndex = 1
+          TabIndex = 0
           TabOrder = 1
           TabPosition = PlatformDefault
           Sizes = (
@@ -77,7 +77,7 @@ inherited frm_RdVouch10: Tfrm_RdVouch10
             CustomIcon = <
               item
               end>
-            IsSelected = False
+            IsSelected = True
             Size.Width = 137.000000000000000000
             Size.Height = 49.000000000000000000
             Size.PlatformDefault = False
@@ -96,6 +96,7 @@ inherited frm_RdVouch10: Tfrm_RdVouch10
               TextSettings.Font.Size = 10.000000000000000000
               StyledSettings = [Family, Style, FontColor]
               TabOrder = 0
+              RowHeight = 30.000000000000000000
               Options = [ColumnResize, ColumnMove, ColLines, RowLines, Tabs, Header, HeaderClick, AutoDisplacement]
               Viewport.Width = 412.000000000000000000
               Viewport.Height = 350.000000000000000000
@@ -105,7 +106,7 @@ inherited frm_RdVouch10: Tfrm_RdVouch10
             CustomIcon = <
               item
               end>
-            IsSelected = True
+            IsSelected = False
             Size.Width = 137.000000000000000000
             Size.Height = 49.000000000000000000
             Size.PlatformDefault = False
@@ -124,6 +125,7 @@ inherited frm_RdVouch10: Tfrm_RdVouch10
               TextSettings.Font.Size = 10.000000000000000000
               StyledSettings = [Family, Style, FontColor]
               TabOrder = 0
+              RowHeight = 30.000000000000000000
               Options = [ColumnResize, ColumnMove, ColLines, RowLines, Tabs, Header, HeaderClick, AutoDisplacement]
               OnSelectCell = StringGrid_DetailSelectCell
               Viewport.Width = 412.000000000000000000

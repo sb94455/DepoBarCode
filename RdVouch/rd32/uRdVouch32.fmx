@@ -57,7 +57,7 @@ inherited frm_RdVouch32: Tfrm_RdVouch32
           Size.PlatformDefault = False
           StyleLookup = 'tabcontrolstyle'
           TabHeight = 49.000000000000000000
-          TabIndex = 0
+          TabIndex = 1
           TabOrder = 1
           TabPosition = PlatformDefault
           Sizes = (
@@ -71,7 +71,7 @@ inherited frm_RdVouch32: Tfrm_RdVouch32
             CustomIcon = <
               item
               end>
-            IsSelected = True
+            IsSelected = False
             Size.Width = 137.000000000000000000
             Size.Height = 49.000000000000000000
             Size.PlatformDefault = False
@@ -90,10 +90,11 @@ inherited frm_RdVouch32: Tfrm_RdVouch32
               TextSettings.Font.Size = 10.000000000000000000
               StyledSettings = [Family, Style, FontColor]
               TabOrder = 1
+              RowHeight = 30.000000000000000000
               Options = [ColumnResize, ColumnMove, ColLines, RowLines, Tabs, Header, HeaderClick, AutoDisplacement]
               OnCellDblClick = StringGrid_SubCellDblClick
-              Viewport.Width = 412.000000000000000000
-              Viewport.Height = 217.000000000000000000
+              Viewport.Width = 407.000000000000000000
+              Viewport.Height = 185.000000000000000000
             end
             object StringGrid_SubDetail: TStringGrid
               Align = Client
@@ -107,7 +108,7 @@ inherited frm_RdVouch32: Tfrm_RdVouch32
               TabOrder = 0
               Options = [ColumnResize, ColumnMove, ColLines, RowLines, Tabs, Header, HeaderClick, AutoDisplacement]
               Viewport.Width = 412.000000000000000000
-              Viewport.Height = 133.000000000000000000
+              Viewport.Height = 101.000000000000000000
             end
           end
           object Tab_Detail: TTabItem
@@ -115,7 +116,7 @@ inherited frm_RdVouch32: Tfrm_RdVouch32
               item
               end>
             StyledSettings = [Family, Style, FontColor]
-            IsSelected = False
+            IsSelected = True
             Size.Width = 137.000000000000000000
             Size.Height = 49.000000000000000000
             Size.PlatformDefault = False
@@ -134,9 +135,10 @@ inherited frm_RdVouch32: Tfrm_RdVouch32
               TextSettings.Font.Size = 10.000000000000000000
               StyledSettings = [Family, Style, FontColor]
               TabOrder = 0
+              RowHeight = 30.000000000000000000
               Options = [ColumnResize, ColumnMove, ColLines, RowLines, Tabs, Header, HeaderClick, AutoDisplacement]
               Viewport.Width = 412.000000000000000000
-              Viewport.Height = 350.000000000000000000
+              Viewport.Height = 318.000000000000000000
             end
           end
           object TabItem1: TTabItem
@@ -160,8 +162,8 @@ inherited frm_RdVouch32: Tfrm_RdVouch32
               Size.Height = 350.000000000000000000
               Size.PlatformDefault = False
               TabOrder = 0
-              Viewport.Width = 412.000000000000000000
-              Viewport.Height = 350.000000000000000000
+              Viewport.Width = 404.000000000000000000
+              Viewport.Height = 342.000000000000000000
             end
           end
         end
